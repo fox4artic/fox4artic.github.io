@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Tags on 4rtic f0x</title>
+        <link>/tags/</link>
+        <description>Recent content in Tags on 4rtic f0x</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>es</language><atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>abuso-privilegios</title>
+        <link>/tags/abuso-privilegios/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        
+        <guid>/tags/abuso-privilegios/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>cve</title>
+        <link>/tags/cve/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        
+        <guid>/tags/cve/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>john</title>
+        <link>/tags/john/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        
+        <guid>/tags/john/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>login-bypass</title>
+        <link>/tags/login-bypass/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        
+        <guid>/tags/login-bypass/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>rce</title>
+        <link>/tags/rce/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        
+        <guid>/tags/rce/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>sqli</title>
+        <link>/tags/sqli/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        
+        <guid>/tags/sqli/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>websockets</title>
+        <link>/tags/websockets/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        
+        <guid>/tags/websockets/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>wp</title>
+        <link>/tags/wp/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        
+        <guid>/tags/wp/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>xxe</title>
+        <link>/tags/xxe/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        
+        <guid>/tags/xxe/</guid>
+        <description></description>
+        </item>
+        
+    </channel>
+</rss>

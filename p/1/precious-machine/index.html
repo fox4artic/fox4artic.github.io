@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Reconocimiento Como siempre, vemos si tenemos conexión con la máquina:
+1 ping -c 1 10.10.11.189 1 2 3 4 5 6 #PING 10.10.11.189 (10.10.11.189) 56(84) bytes of data. #64 bytes from 10.10.11.189: icmp_seq=1 ttl=63 time=56.1 ms # #--- 10.10.11.189 ping statistics --- #1 packets transmitted, 1 received, 0% packet loss, time 0ms #rtt min/avg/max/mdev = 56.133/56.133/56.133/0.000 ms Una vez que sabemos que la máquina a la que nos enfrentamos está disponible, nos podemos fijar en que es una máquina Linux (TTL).'>
+<title>Precious Machine</title>
+
+<link rel='canonical' href='/p/1/precious-machine/'>
+
+<link rel="stylesheet" href="/scss/style.min.9e18e1b797c5244ff7885f4c06183827750e5d6f4091e5eea3d7d981de346889.css"><meta property='og:title' content='Precious Machine'>
+<meta property='og:description' content='Reconocimiento Como siempre, vemos si tenemos conexión con la máquina:
+1 ping -c 1 10.10.11.189 1 2 3 4 5 6 #PING 10.10.11.189 (10.10.11.189) 56(84) bytes of data. #64 bytes from 10.10.11.189: icmp_seq=1 ttl=63 time=56.1 ms # #--- 10.10.11.189 ping statistics --- #1 packets transmitted, 1 received, 0% packet loss, time 0ms #rtt min/avg/max/mdev = 56.133/56.133/56.133/0.000 ms Una vez que sabemos que la máquina a la que nos enfrentamos está disponible, nos podemos fijar en que es una máquina Linux (TTL).'>
+<meta property='og:url' content='/p/1/precious-machine/'>
+<meta property='og:site_name' content='4rtic f0x'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='cve' /><meta property='og:image' content='/p/1/precious-machine/landing.png' />
+<meta name="twitter:title" content="Precious Machine">
+<meta name="twitter:description" content="Reconocimiento Como siempre, vemos si tenemos conexión con la máquina:
+1 ping -c 1 10.10.11.189 1 2 3 4 5 6 #PING 10.10.11.189 (10.10.11.189) 56(84) bytes of data. #64 bytes from 10.10.11.189: icmp_seq=1 ttl=63 time=56.1 ms # #--- 10.10.11.189 ping statistics --- #1 packets transmitted, 1 received, 0% packet loss, time 0ms #rtt min/avg/max/mdev = 56.133/56.133/56.133/0.000 ms Una vez que sabemos que la máquina a la que nos enfrentamos está disponible, nos podemos fijar en que es una máquina Linux (TTL)."><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='/p/1/precious-machine/landing.png' />
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            localStorage.setItem(colorSchemeKey, "dark");
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">4rtic f0x</a></h1>
+            <h2 class="site-description"></h2>
+        </div>
+    </header><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/scripts/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 9v-1a3 3 0 0 1 6 0v1" />
+  <path d="M8 9h8a6 6 0 0 1 1 3v3a5 5 0 0 1 -10 0v-3a6 6 0 0 1 1 -3" />
+  <line x1="3" y1="13" x2="7" y2="13" />
+  <line x1="17" y1="13" x2="21" y2="13" />
+  <line x1="12" y1="20" x2="12" y2="14" />
+  <line x1="4" y1="19" x2="7.35" y2="17" />
+  <line x1="20" y1="19" x2="16.65" y2="17" />
+  <line x1="4" y1="7" x2="7.75" y2="9.4" />
+  <line x1="20" y1="7" x2="16.25" y2="9.4" />
+</svg>
+                
+                <span>Scripts</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/cve-exploits/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 9v-1a3 3 0 0 1 6 0v1" />
+  <path d="M8 9h8a6 6 0 0 1 1 3v3a5 5 0 0 1 -10 0v-3a6 6 0 0 1 1 -3" />
+  <line x1="3" y1="13" x2="7" y2="13" />
+  <line x1="17" y1="13" x2="21" y2="13" />
+  <line x1="12" y1="20" x2="12" y2="14" />
+  <line x1="4" y1="19" x2="7.35" y2="17" />
+  <line x1="20" y1="19" x2="16.65" y2="17" />
+  <line x1="4" y1="7" x2="7.75" y2="9.4" />
+  <line x1="20" y1="7" x2="16.25" y2="9.4" />
+</svg>
+                
+                <span>CVE Exploits</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Tabla de contenido</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#reconocimiento">Reconocimiento</a></li>
+    <li><a href="#obteniendo-acceso-a-la-máquina-víctima">Obteniendo acceso a la máquina víctima</a>
+      <ol>
+        <li><a href="#command-injection">Command Injection</a></li>
+      </ol>
+    </li>
+    <li><a href="#escalada-de-privilegios">Escalada de privilegios</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/1/precious-machine/">
+                <img src="/p/1/precious-machine/landing.png"
+                        
+                        width="1920" 
+                        height="1080" 
+                        loading="lazy"
+                        alt="Featured image of post Precious Machine" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/htb/" >
+                HTB
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/1/precious-machine/">Precious Machine</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    3 minutos a leer
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="reconocimiento">Reconocimiento</h2>
+<p>Como siempre, vemos si tenemos conexión con la máquina:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"> ping -c <span class="m">1</span> 10.10.11.189
+</span></span></code></pre></td></tr></table>
+</div>
+</div><br>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">#PING 10.10.11.189 (10.10.11.189) 56(84) bytes of data.
+</span></span><span class="line"><span class="cl">#64 bytes from 10.10.11.189: icmp_seq=1 ttl=63 time=56.1 ms
+</span></span><span class="line"><span class="cl">#
+</span></span><span class="line"><span class="cl">#--- 10.10.11.189 ping statistics ---
+</span></span><span class="line"><span class="cl">#1 packets transmitted, 1 received, 0% packet loss, time 0ms
+</span></span><span class="line"><span class="cl">#rtt min/avg/max/mdev = 56.133/56.133/56.133/0.000 ms
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Una vez que sabemos que la máquina a la que nos enfrentamos está disponible, nos podemos fijar en que es una máquina Linux (TTL). Posteriormente ejecutamos el escaneo completo de todos los puertos para ver qué puertos abiertos encontramos:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"> nmap -p- --open -T5 -n -Pn 10.10.11.189 -oG openTCPports
+</span></span></code></pre></td></tr></table>
+</div>
+</div><br>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">#Starting Nmap 7.93 ( https://nmap.org ) at 2023-02-19 17:21 CET
+</span></span><span class="line"><span class="cl">#Nmap scan report for 10.10.11.189
+</span></span><span class="line"><span class="cl">#Host is up (0.055s latency).
+</span></span><span class="line"><span class="cl">#Not shown: 56656 closed tcp ports (conn-refused), 8877 filtered tcp ports (no-response)
+</span></span><span class="line"><span class="cl">#Some closed ports may be reported as filtered due to --defeat-rst-ratelimit
+</span></span><span class="line"><span class="cl">#PORT   STATE SERVICE
+</span></span><span class="line"><span class="cl">#22/tcp open  ssh
+</span></span><span class="line"><span class="cl">#80/tcp open  http
+</span></span><span class="line"><span class="cl">#
+</span></span><span class="line"><span class="cl">#Nmap done: 1 IP address (1 host up) scanned in 20.26 seconds
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Posteriormente ejecutamos el script <a class="link" href="/scripts/#greports" >grePorts</a> para pasar los puertos detectados a nmap y realizar un escáner de reconocimiento más exhaustivo en esos puertos mediante una serie de scripts definidos por nmap:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"> nmap -p20,80 -sVC 10.10.11.189 -oN servicesTCPports
+</span></span></code></pre></td></tr></table>
+</div>
+</div><br>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">## Nmap 7.93 scan initiated Sun Feb 19 17:23:27 2023 as: nmap -p22,80 -sVC -oN nmap2.out 10.10.11.189
+</span></span><span class="line"><span class="cl">#Nmap scan report for 10.10.11.189
+</span></span><span class="line"><span class="cl">#Host is up (0.054s latency).
+</span></span><span class="line"><span class="cl">#
+</span></span><span class="line"><span class="cl">#PORT   STATE SERVICE VERSION
+</span></span><span class="line"><span class="cl">#22/tcp open  ssh     OpenSSH 8.4p1 Debian 5+deb11u1 (protocol 2.0)
+</span></span><span class="line"><span class="cl">#| ssh-hostkey: 
+</span></span><span class="line"><span class="cl">#|   3072 845e13a8e31e20661d235550f63047d2 (RSA)
+</span></span><span class="line"><span class="cl">#|   256 a2ef7b9665ce4161c467ee4e96c7c892 (ECDSA)
+</span></span><span class="line"><span class="cl">#|_  256 33053dcd7ab798458239e7ae3c91a658 (ED25519)
+</span></span><span class="line"><span class="cl">#80/tcp open  http    nginx 1.18.0
+</span></span><span class="line"><span class="cl">#|_http-server-header: nginx/1.18.0
+</span></span><span class="line"><span class="cl">#|_http-title: Did not follow redirect to http://precious.htb/
+</span></span><span class="line"><span class="cl">#Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+</span></span><span class="line"><span class="cl">#
+</span></span><span class="line"><span class="cl">#Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+</span></span><span class="line"><span class="cl">## Nmap done at Sun Feb 19 17:23:36 2023 -- 1 IP address (1 host up) scanned in 9.73 seconds
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="obteniendo-acceso-a-la-máquina-víctima">Obteniendo acceso a la máquina víctima</h2>
+<h3 id="command-injection">Command Injection</h3>
+<p>Principalmente nos encontramos con una página web que convierte una paǵina web a html; principalmente echamos un vistazo a los metadatos para intentar ver que herramienta se está encargando de esto; y efectivamente la encontramos:</p>
+<p><img src="/p/1/precious-machine/precious1.png"
+	width="964"
+	height="548"
+	srcset="/p/1/precious-machine/precious1_hubf132b06460031078bd3fea0b053515f_106564_480x0_resize_box_3.png 480w, /p/1/precious-machine/precious1_hubf132b06460031078bd3fea0b053515f_106564_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="175"
+		data-flex-basis="422px"
+	
+></p>
+<p>Echando un vistazo en busca de vulnerabilidades asociadas a esta herramienta, podemos encontrar fácilmente el siguiente reporte en GitHub:</p>
+<p><img src="/p/1/precious-machine/precious2.png"
+	width="1340"
+	height="719"
+	srcset="/p/1/precious-machine/precious2_hu81870ba1c80ccb8f0dd1dff030672cbf_167777_480x0_resize_box_3.png 480w, /p/1/precious-machine/precious2_hu81870ba1c80ccb8f0dd1dff030672cbf_167777_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="186"
+		data-flex-basis="447px"
+	
+></p>
+<p>Podemos encontrar múltiples recursos, como el propio &lsquo;commit&rsquo; del repositorio de la herramienta:</p>
+<p><img src="/p/1/precious-machine/precious3.png"
+	width="1099"
+	height="352"
+	srcset="/p/1/precious-machine/precious3_hu35de3134a85e26d878e981a52f83fa90_71280_480x0_resize_box_3.png 480w, /p/1/precious-machine/precious3_hu35de3134a85e26d878e981a52f83fa90_71280_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="312"
+		data-flex-basis="749px"
+	
+></p>
+<p>Hacemos una prueba para ver si la página tarda 5 segundos en emitir el pdf:</p>
+<p><img src="/p/1/precious-machine/precious4.png"
+	width="702"
+	height="285"
+	srcset="/p/1/precious-machine/precious4_hu88bc861564a58c98614b9c39ec917a61_23410_480x0_resize_box_3.png 480w, /p/1/precious-machine/precious4_hu88bc861564a58c98614b9c39ec917a61_23410_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="246"
+		data-flex-basis="591px"
+	
+></p>
+<p>Para ver si todo se está ejecutando correctamente, creamos un pequeño servicio web con Python; hacemos clic, vemos la petición GET del lado de la máquina víctima y tarda 5 segundos en generar el pdf. Esto nos sirve para entablar una consola remota y ganar acceso a la máquina.</p>
+<h2 id="escalada-de-privilegios">Escalada de privilegios</h2>
+<p>Accedemos con el usuario &lsquo;ruby&rsquo; y en busca de ficheros de configuración encontramos un fichero denominado &lsquo;conf&rsquo; que contiene la contraseña de &lsquo;henry&rsquo; el otro usuario:</p>
+<p><img src="/p/1/precious-machine/precious5.png"
+	width="1275"
+	height="171"
+	srcset="/p/1/precious-machine/precious5_hu2b78a603c546a9974a766321fb169e61_30784_480x0_resize_box_3.png 480w, /p/1/precious-machine/precious5_hu2b78a603c546a9974a766321fb169e61_30784_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="745"
+		data-flex-basis="1789px"
+	
+></p>
+<p>Vemos que el usuario puede ejecutar como usuario privilegiado sin ofrecer contraseña un script que carga un fichero de configuración YAML y comprueba si es igual las dependencias existentes de Ruby.</p>
+<p>Buscando como inyectar de alguna manera algún tipo de comando en el fichero YAML y poder ganar acceso como administrador, <a class="link" href="https://staaldraad.github.io/post/2021-01-09-universal-rce-ruby-yaml-load-updated/"  target="_blank" rel="noopener"
+    >encontré el siguiente recurso</a> donde se explica perfectamente:</p>
+<p><img src="/p/1/precious-machine/precious6.png"
+	width="1054"
+	height="572"
+	srcset="/p/1/precious-machine/precious6_hu44933f388d6090e9aab0532c5a62bcb4_69902_480x0_resize_box_3.png 480w, /p/1/precious-machine/precious6_hu44933f388d6090e9aab0532c5a62bcb4_69902_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="184"
+		data-flex-basis="442px"
+	
+></p>
+<p>Sustituimos el comando por &ldquo;bash&rdquo; y obtenemos permisos de administrador.</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/cve/">cve</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">Contenidos relacionados</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/1/metatwo-machine/">
+        
+        
+            <div class="article-image">
+                <img src="/p/1/metatwo-machine/landing.4ab57de3831f316fac9172831f1faf3b.png" 
+                        width="1920" 
+                        height="1080" 
+                        loading="lazy"
+                        alt="Featured image of post MetaTwo Machine"
+                        
+                        data-hash="md5-SrV944MfMW&#43;skXKDHx&#43;vOw==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">MetaTwo Machine</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/1/soccer-machine/">
+        
+        
+            <div class="article-image">
+                <img src="/p/1/soccer-machine/landing.55ef91476fa5ae5d0e802d2cb0908ec2.png" 
+                        width="1920" 
+                        height="1080" 
+                        loading="lazy"
+                        alt="Featured image of post Soccer Machine"
+                        
+                        data-hash="md5-Ve&#43;RR2&#43;lrl0OgC0ssJCOwg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Soccer Machine</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/1/stocker-machine/">
+        
+        
+            <div class="article-image">
+                <img src="/p/1/stocker-machine/landing.68db51351a961a770e3391348a38dab9.png" 
+                        width="1920" 
+                        height="1080" 
+                        loading="lazy"
+                        alt="Featured image of post Stocker Machine"
+                        
+                        data-hash="md5-aNtRNRqWGncOM5E0ijjauQ==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Stocker Machine</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2023 4rtic f0x
+    </section>
+    
+    <section class="powerby">
+        Tema <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.16.0">Stack</a></b> diseñado por <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

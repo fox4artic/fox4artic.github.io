@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Reconocimiento Para comenzar, como es costumbre, comprobamos si la máquina está disponible:
+1 ping -c 1 10.10.11.196 1 2 3 4 5 6 ## PING 10.10.11.196 (10.10.11.196) 56(84) bytes of data. ## 64 bytes from 10.10.11.196: icmp_seq=1 ttl=63 time=46.3 ms ## ## --- 10.10.11.196 ping statistics --- ## 1 packets transmitted, 1 received, 0% packet loss, time 0ms ## rtt min/avg/max/mdev = 46.315/46.315/46.315/0.000 ms Si echamos un vistazo al valor TTL en la respuesta, vemos que la máquina a la que nos enfrentamos tiene como sistema operativo GNU/Linux.'>
+<title>Stocker Machine</title>
+
+<link rel='canonical' href='/p/1/stocker-machine/'>
+
+<link rel="stylesheet" href="/scss/style.min.9e18e1b797c5244ff7885f4c06183827750e5d6f4091e5eea3d7d981de346889.css"><meta property='og:title' content='Stocker Machine'>
+<meta property='og:description' content='Reconocimiento Para comenzar, como es costumbre, comprobamos si la máquina está disponible:
+1 ping -c 1 10.10.11.196 1 2 3 4 5 6 ## PING 10.10.11.196 (10.10.11.196) 56(84) bytes of data. ## 64 bytes from 10.10.11.196: icmp_seq=1 ttl=63 time=46.3 ms ## ## --- 10.10.11.196 ping statistics --- ## 1 packets transmitted, 1 received, 0% packet loss, time 0ms ## rtt min/avg/max/mdev = 46.315/46.315/46.315/0.000 ms Si echamos un vistazo al valor TTL en la respuesta, vemos que la máquina a la que nos enfrentamos tiene como sistema operativo GNU/Linux.'>
+<meta property='og:url' content='/p/1/stocker-machine/'>
+<meta property='og:site_name' content='4rtic f0x'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='login-bypass' /><meta property='article:tag' content='abuso-privilegios' /><meta property='og:image' content='/p/1/stocker-machine/landing.png' />
+<meta name="twitter:title" content="Stocker Machine">
+<meta name="twitter:description" content="Reconocimiento Para comenzar, como es costumbre, comprobamos si la máquina está disponible:
+1 ping -c 1 10.10.11.196 1 2 3 4 5 6 ## PING 10.10.11.196 (10.10.11.196) 56(84) bytes of data. ## 64 bytes from 10.10.11.196: icmp_seq=1 ttl=63 time=46.3 ms ## ## --- 10.10.11.196 ping statistics --- ## 1 packets transmitted, 1 received, 0% packet loss, time 0ms ## rtt min/avg/max/mdev = 46.315/46.315/46.315/0.000 ms Si echamos un vistazo al valor TTL en la respuesta, vemos que la máquina a la que nos enfrentamos tiene como sistema operativo GNU/Linux."><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='/p/1/stocker-machine/landing.png' />
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            localStorage.setItem(colorSchemeKey, "dark");
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">4rtic f0x</a></h1>
+            <h2 class="site-description"></h2>
+        </div>
+    </header><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/scripts/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 9v-1a3 3 0 0 1 6 0v1" />
+  <path d="M8 9h8a6 6 0 0 1 1 3v3a5 5 0 0 1 -10 0v-3a6 6 0 0 1 1 -3" />
+  <line x1="3" y1="13" x2="7" y2="13" />
+  <line x1="17" y1="13" x2="21" y2="13" />
+  <line x1="12" y1="20" x2="12" y2="14" />
+  <line x1="4" y1="19" x2="7.35" y2="17" />
+  <line x1="20" y1="19" x2="16.65" y2="17" />
+  <line x1="4" y1="7" x2="7.75" y2="9.4" />
+  <line x1="20" y1="7" x2="16.25" y2="9.4" />
+</svg>
+                
+                <span>Scripts</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/cve-exploits/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 9v-1a3 3 0 0 1 6 0v1" />
+  <path d="M8 9h8a6 6 0 0 1 1 3v3a5 5 0 0 1 -10 0v-3a6 6 0 0 1 1 -3" />
+  <line x1="3" y1="13" x2="7" y2="13" />
+  <line x1="17" y1="13" x2="21" y2="13" />
+  <line x1="12" y1="20" x2="12" y2="14" />
+  <line x1="4" y1="19" x2="7.35" y2="17" />
+  <line x1="20" y1="19" x2="16.65" y2="17" />
+  <line x1="4" y1="7" x2="7.75" y2="9.4" />
+  <line x1="20" y1="7" x2="16.25" y2="9.4" />
+</svg>
+                
+                <span>CVE Exploits</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Tabla de contenido</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#reconocimiento">Reconocimiento</a></li>
+    <li><a href="#obteniendo-acceso-a-la-máquina-víctima">Obteniendo acceso a la máquina víctima</a>
+      <ol>
+        <li><a href="#saltando-el-panel-de-autenticación">Saltando el panel de autenticación</a></li>
+        <li><a href="#obteniendo-credenciales-ssh">Obteniendo credenciales ssh</a></li>
+      </ol>
+    </li>
+    <li><a href="#escalada-de-privilegios">Escalada de privilegios</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/1/stocker-machine/">
+                <img src="/p/1/stocker-machine/landing.png"
+                        
+                        width="1920" 
+                        height="1080" 
+                        loading="lazy"
+                        alt="Featured image of post Stocker Machine" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/htb/" >
+                HTB
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/1/stocker-machine/">Stocker Machine</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    5 minutos a leer
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="reconocimiento">Reconocimiento</h2>
+<p>Para comenzar, como es costumbre, comprobamos si la máquina está disponible:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"> ping -c <span class="m">1</span> 10.10.11.196
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">## PING 10.10.11.196 (10.10.11.196) 56(84) bytes of data.
+</span></span><span class="line"><span class="cl">## 64 bytes from 10.10.11.196: icmp_seq=1 ttl=63 time=46.3 ms
+</span></span><span class="line"><span class="cl">## 
+</span></span><span class="line"><span class="cl">## --- 10.10.11.196 ping statistics ---
+</span></span><span class="line"><span class="cl">## 1 packets transmitted, 1 received, 0% packet loss, time 0ms
+</span></span><span class="line"><span class="cl">## rtt min/avg/max/mdev = 46.315/46.315/46.315/0.000 ms
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Si echamos un vistazo al valor <strong>TTL</strong> en la respuesta, vemos que la máquina a la que nos enfrentamos tiene como sistema operativo GNU/Linux.</p>
+<p>A continuación vemos que servicios están desplegados haciendo un escaneo de puertos, principalmente por el protocolo TCP:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"> nmap -p- --open -T5 -Pn -n <span class="m">1</span> 10.10.11.196 -oG openTCPports
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">## Starting Nmap 7.93 ( https://nmap.org ) at 2023-02-13 20:19 CET
+</span></span><span class="line"><span class="cl">## Nmap scan report for 10.10.11.196
+</span></span><span class="line"><span class="cl">## Host is up (0.046s latency).
+</span></span><span class="line"><span class="cl">## Not shown: 60876 closed tcp ports (conn-refused), 4657 filtered tcp ports (no-response)
+</span></span><span class="line"><span class="cl">## Some closed ports may be reported as filtered due to --defeat-rst-ratelimit
+</span></span><span class="line"><span class="cl">## PORT   STATE SERVICE
+</span></span><span class="line"><span class="cl">## 22/tcp open  ssh
+</span></span><span class="line"><span class="cl">## 80/tcp open  http
+</span></span><span class="line"><span class="cl">## 
+</span></span><span class="line"><span class="cl">## Nmap done: 2 IP addresses (2 hosts up) scanned in 39.03 seconds
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Una vez hecho esto, vemos que están expuestos los puertos 22 y 80. Veamos que servicios maneja, lanzando con nmap una serie de scripts de reconocimiento:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"> nmap -p22,80 -sVC 10.10.11.196 -oN servicesTCPports
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">## Starting Nmap 7.93 ( https://nmap.org ) at 2023-02-13 20:20 CET
+</span></span><span class="line"><span class="cl">## Nmap scan report for stocker.htb (10.10.11.196)
+</span></span><span class="line"><span class="cl">## Host is up (0.049s latency).
+</span></span><span class="line"><span class="cl">## 
+</span></span><span class="line"><span class="cl">## PORT   STATE SERVICE VERSION
+</span></span><span class="line"><span class="cl">## 22/tcp open  ssh     OpenSSH 8.2p1 Ubuntu 4ubuntu0.5 (Ubuntu Linux; protocol 2.0)
+</span></span><span class="line"><span class="cl">## | ssh-hostkey: 
+</span></span><span class="line"><span class="cl">## |   3072 3d12971d86bc161683608f4f06e6d54e (RSA)
+</span></span><span class="line"><span class="cl">## |   256 7c4d1a7868ce1200df491037f9ad174f (ECDSA)
+</span></span><span class="line"><span class="cl">## |_  256 dd978050a5bacd7d55e827ed28fdaa3b (ED25519)
+</span></span><span class="line"><span class="cl">## 80/tcp open  http    nginx 1.18.0 (Ubuntu)
+</span></span><span class="line"><span class="cl">## |_http-title: Stock - Coming Soon!
+</span></span><span class="line"><span class="cl">## |_http-generator: Eleventy v2.0.0
+</span></span><span class="line"><span class="cl">## |_http-server-header: nginx/1.18.0 (Ubuntu)
+</span></span><span class="line"><span class="cl">## Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+</span></span><span class="line"><span class="cl">## 
+</span></span><span class="line"><span class="cl">## Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+</span></span><span class="line"><span class="cl">## Nmap done: 1 IP address (1 host up) scanned in 9.26 seconds
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="obteniendo-acceso-a-la-máquina-víctima">Obteniendo acceso a la máquina víctima</h2>
+<p>Vemos ssh ejecutándose y un servicio web desplegado en el puerto 80. Como no disponemos de credenciales para ssh, vamos a echar un vistazo a la web; primero desde terminal para saber a qué tecnologías nos enfrentamos:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"> whatweb 10.10.11.196
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><br><div align="center"><img src="stocker2.png"></div></p>
+<p>Al principio no veremos nada ya que nos redirige a un dominio que nuestro ordenador no sabe interpretar; para ello añadimos la dirección ip a nuestro archivo local <em>/etc/hosts</em> además del dominio al que nos redirige <em>stocker.htb</em>.</p>
+<p>Echando un rápido vistazo a la página web, no se ve nada que destaque; con la herramienta gobuster veamos si hay algún subdominio:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"> gobuster vhost -u stocker.htb -w /usr/share/SecLists/Discovery/DNS/subdomains-top1million-110000.txt
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><br><div align="center"><img src="stocker3.png"></div></p>
+<p>Añadimos el subdominio de la imagen al fichero de hosts y accedemos a él para ver un panel de autenticación para acceder a los recursos de la plataforma.</p>
+<p>Intentar algún bypass simple no es efectivo; interceptando la petición desde nuestro dispositivo con BurpSuite podemos cambiar el contenido de la aplicación de &ldquo;url-encoded&rdquo; a &ldquo;json&rdquo; sin recibir ningún error del estilo &ldquo;Internal Server Error&rdquo;; esto me hace pensar que por detrás se esté haciendo algún tipo de petición a una base de datos.</p>
+<h3 id="saltando-el-panel-de-autenticación">Saltando el panel de autenticación</h3>
+<p>Haciendo varias pruebas encontré una manera de saltarme el panel.A continuación se puede ver una forma de aprovechar esto jugando con los valores json:</p>
+<div align="center"><img src="stocker4.png"></div>
+<p>¿Qué estamos haciendo realmente? Según la documentación de MongoDB <em>$ne selects the document where the value of the field is not equal tothe specified value</em> es decir, estamos seleccionando todos los valores distintos al que hemos puesto <strong>incluido los valores de autenticación correctos</strong> . Usando este valor que se interpreta internamente como un tipo de dato BSON, podemos acceder como usuario registrado a la plataforma.</p>
+<h3 id="obteniendo-credenciales-ssh">Obteniendo credenciales ssh</h3>
+<p>Nos encontramos ante una especie de tienda, donde seleccionamos los objetos para comprar, realizamos la compra y obtenemos un pdf a modo de factura. Interceptando la petición de compra podemos alterar el contenido de este pdf.</p>
+<div align="center"><img src="stocker5.png"></div>
+<div align="center"><img src="stocker6.png"></div>
+<p>Mirando los metadatos del fichero, este está generado con chromium ¿podremos ver el contenido de un fichero abusando de esto y gracias a un iframe?La respuesta es que sí, podemos:</p>
+<div align="center"><img src="stocker7.png"></div>
+<div align="center"><img src="stocker8.png"></div>
+<p>Obtenemos el usuario &ldquo;Angoose&rdquo;. Tras buscar en varios ficheros insatisfactoriamente se me ocurrió buscar ficheros &ldquo;js&rdquo; que contuvieran la configuración del usuario para el inicio de sesión de este; probé con varios hasta dar con el &ldquo;index.js&rdquo; que contenía:</p>
+<div align="center"><img src="stocker9.png"></div>
+<p>Probando el usuario y la contraseña en ssh ganamos acceso.</p>
+<h2 id="escalada-de-privilegios">Escalada de privilegios</h2>
+<p>Una vez hemos ganado acceso tenemos permisos para ejecutar como root sin contraseña el comando &ldquo;node&rdquo; acompañado de cierta ruta usando el comodín asterisco. Gracias a este comodín podemos ejecutar realmente el fichero que queramos porque el comodín se puede sustituir por cero o más ocurrencias de cualquier caracter. Creamos el siguiente scrip y obtenemos la flag de root:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">fs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&#34;fs&#34;</span><span class="p">),</span> <span class="nx">filename</span> <span class="o">=</span> <span class="s2">&#34;/root/root.txt&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">fs</span><span class="p">.</span><span class="nx">readFile</span><span class="p">(</span><span class="nx">filename</span><span class="p">,</span> <span class="s1">&#39;utf-8&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span><span class="nx">data</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="k">throw</span> <span class="nx">error</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&#34;ROOT FLAG: &#34;</span><span class="p">,</span> <span class="nx">data</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">})</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/login-bypass/">login-bypass</a>
+        
+            <a href="/tags/abuso-privilegios/">abuso-privilegios</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">Contenidos relacionados</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/1/metatwo-machine/">
+        
+        
+            <div class="article-image">
+                <img src="/p/1/metatwo-machine/landing.4ab57de3831f316fac9172831f1faf3b.png" 
+                        width="1920" 
+                        height="1080" 
+                        loading="lazy"
+                        alt="Featured image of post MetaTwo Machine"
+                        
+                        data-hash="md5-SrV944MfMW&#43;skXKDHx&#43;vOw==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">MetaTwo Machine</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/1/precious-machine/">
+        
+        
+            <div class="article-image">
+                <img src="/p/1/precious-machine/landing.be74656f9a7d9749d196b350c0a32506.png" 
+                        width="1920" 
+                        height="1080" 
+                        loading="lazy"
+                        alt="Featured image of post Precious Machine"
+                        
+                        data-hash="md5-vnRlb5p9l0nRlrNQwKMlBg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Precious Machine</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/1/soccer-machine/">
+        
+        
+            <div class="article-image">
+                <img src="/p/1/soccer-machine/landing.55ef91476fa5ae5d0e802d2cb0908ec2.png" 
+                        width="1920" 
+                        height="1080" 
+                        loading="lazy"
+                        alt="Featured image of post Soccer Machine"
+                        
+                        data-hash="md5-Ve&#43;RR2&#43;lrl0OgC0ssJCOwg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Soccer Machine</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2023 4rtic f0x
+    </section>
+    
+    <section class="powerby">
+        Tema <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.16.0">Stack</a></b> diseñado por <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
