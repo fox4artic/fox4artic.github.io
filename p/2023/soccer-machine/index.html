@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Reconocimiento Empezamos con nmap para ver los puertos abiertos de la máquina:
+1 nmap -p- --open -T5 -Pn -n 10.10.11.194 -oG openTCPports 1 2 3 4 5 6 7 8 9 10 11 ## Starting Nmap 7.93 ( https://nmap.org ) at 2023-02-14 15:28 CET ## Nmap scan report for 10.10.11.194 ## Host is up (0.048s latency). ## Not shown: 62421 closed tcp ports (conn-refused), 3111 filtered tcp ports (no-response) ## Some closed ports may be reported as filtered due to --defeat-rst-ratelimit ## PORT STATE SERVICE ## 22/tcp open ssh ## 80/tcp open http ## 9091/tcp open xmltec-xmlmail ## ## Nmap done: 1 IP address (1 host up) scanned in 15.'>
+<title>Soccer Machine</title>
+
+<link rel='canonical' href='/p/2023/soccer-machine/'>
+
+<link rel="stylesheet" href="/scss/style.min.9e18e1b797c5244ff7885f4c06183827750e5d6f4091e5eea3d7d981de346889.css"><meta property='og:title' content='Soccer Machine'>
+<meta property='og:description' content='Reconocimiento Empezamos con nmap para ver los puertos abiertos de la máquina:
+1 nmap -p- --open -T5 -Pn -n 10.10.11.194 -oG openTCPports 1 2 3 4 5 6 7 8 9 10 11 ## Starting Nmap 7.93 ( https://nmap.org ) at 2023-02-14 15:28 CET ## Nmap scan report for 10.10.11.194 ## Host is up (0.048s latency). ## Not shown: 62421 closed tcp ports (conn-refused), 3111 filtered tcp ports (no-response) ## Some closed ports may be reported as filtered due to --defeat-rst-ratelimit ## PORT STATE SERVICE ## 22/tcp open ssh ## 80/tcp open http ## 9091/tcp open xmltec-xmlmail ## ## Nmap done: 1 IP address (1 host up) scanned in 15.'>
+<meta property='og:url' content='/p/2023/soccer-machine/'>
+<meta property='og:site_name' content='4rtic f0x'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='sqli' /><meta property='article:tag' content='websockets' /><meta property='article:tag' content='rce' /><meta property='article:published_time' content='2023-02-03T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2023-02-03T00:00:00&#43;00:00'/><meta property='og:image' content='/p/2023/soccer-machine/landing.png' />
+<meta name="twitter:title" content="Soccer Machine">
+<meta name="twitter:description" content="Reconocimiento Empezamos con nmap para ver los puertos abiertos de la máquina:
+1 nmap -p- --open -T5 -Pn -n 10.10.11.194 -oG openTCPports 1 2 3 4 5 6 7 8 9 10 11 ## Starting Nmap 7.93 ( https://nmap.org ) at 2023-02-14 15:28 CET ## Nmap scan report for 10.10.11.194 ## Host is up (0.048s latency). ## Not shown: 62421 closed tcp ports (conn-refused), 3111 filtered tcp ports (no-response) ## Some closed ports may be reported as filtered due to --defeat-rst-ratelimit ## PORT STATE SERVICE ## 22/tcp open ssh ## 80/tcp open http ## 9091/tcp open xmltec-xmlmail ## ## Nmap done: 1 IP address (1 host up) scanned in 15."><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='/p/2023/soccer-machine/landing.png' />
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            localStorage.setItem(colorSchemeKey, "dark");
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">4rtic f0x</a></h1>
+            <h2 class="site-description"></h2>
+        </div>
+    </header><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/scripts/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 9v-1a3 3 0 0 1 6 0v1" />
+  <path d="M8 9h8a6 6 0 0 1 1 3v3a5 5 0 0 1 -10 0v-3a6 6 0 0 1 1 -3" />
+  <line x1="3" y1="13" x2="7" y2="13" />
+  <line x1="17" y1="13" x2="21" y2="13" />
+  <line x1="12" y1="20" x2="12" y2="14" />
+  <line x1="4" y1="19" x2="7.35" y2="17" />
+  <line x1="20" y1="19" x2="16.65" y2="17" />
+  <line x1="4" y1="7" x2="7.75" y2="9.4" />
+  <line x1="20" y1="7" x2="16.25" y2="9.4" />
+</svg>
+                
+                <span>Scripts</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/cve-exploits/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 9v-1a3 3 0 0 1 6 0v1" />
+  <path d="M8 9h8a6 6 0 0 1 1 3v3a5 5 0 0 1 -10 0v-3a6 6 0 0 1 1 -3" />
+  <line x1="3" y1="13" x2="7" y2="13" />
+  <line x1="17" y1="13" x2="21" y2="13" />
+  <line x1="12" y1="20" x2="12" y2="14" />
+  <line x1="4" y1="19" x2="7.35" y2="17" />
+  <line x1="20" y1="19" x2="16.65" y2="17" />
+  <line x1="4" y1="7" x2="7.75" y2="9.4" />
+  <line x1="20" y1="7" x2="16.25" y2="9.4" />
+</svg>
+                
+                <span>CVE Exploits</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Tabla de contenido</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#reconocimiento">Reconocimiento</a></li>
+    <li><a href="#obteniendo-acceso-a-la-máquina-víctima">Obteniendo acceso a la máquina víctima</a>
+      <ol>
+        <li><a href="#ganando-rce">Ganando RCE</a></li>
+      </ol>
+    </li>
+    <li><a href="#escalada-de-privilegios--a-medias">Escalada de privilegios &hellip; (a medias)</a>
+      <ol>
+        <li><a href="#escalada-de-privilegios--completa">Escalada de privilegios &hellip; (completa)</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/2023/soccer-machine/">
+                <img src="/p/2023/soccer-machine/landing.png"
+                        
+                        width="1920" 
+                        height="1080" 
+                        loading="lazy"
+                        alt="Featured image of post Soccer Machine" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/htb/" >
+                HTB
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/2023/soccer-machine/">Soccer Machine</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Feb, 2023</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    4 minutos a leer
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="reconocimiento">Reconocimiento</h2>
+<p>Empezamos con nmap para ver los puertos abiertos de la máquina:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"> nmap -p- --open -T5 -Pn -n 10.10.11.194 -oG openTCPports
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">## Starting Nmap 7.93 ( https://nmap.org ) at 2023-02-14 15:28 CET
+</span></span><span class="line"><span class="cl">## Nmap scan report for 10.10.11.194
+</span></span><span class="line"><span class="cl">## Host is up (0.048s latency).
+</span></span><span class="line"><span class="cl">## Not shown: 62421 closed tcp ports (conn-refused), 3111 filtered tcp ports (no-response)
+</span></span><span class="line"><span class="cl">## Some closed ports may be reported as filtered due to --defeat-rst-ratelimit
+</span></span><span class="line"><span class="cl">## PORT     STATE SERVICE
+</span></span><span class="line"><span class="cl">## 22/tcp   open  ssh
+</span></span><span class="line"><span class="cl">## 80/tcp   open  http
+</span></span><span class="line"><span class="cl">## 9091/tcp open  xmltec-xmlmail
+</span></span><span class="line"><span class="cl">## 
+</span></span><span class="line"><span class="cl">## Nmap done: 1 IP address (1 host up) scanned in 15.92 seconds
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Ejecuto la utilidad &ldquo;grePorts&rdquo; para obtener los puertos abiertos directamente en la &ldquo;clipboard&rdquo;:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"> grePorts
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">## [!] Open ports: 22,80,9091
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Y ejecutamos una serie de scripts de reconocimiento con nmap para ver los servicios disponibles y su versión:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"> nmap -p22,80,9091 -sVC -oN servicesTCPports 10.10.11.194
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">## Starting Nmap 7.93 ( https://nmap.org ) at 2023-02-14 15:33 CET
+</span></span><span class="line"><span class="cl">## Nmap scan report for soccer.htb (10.10.11.194)
+</span></span><span class="line"><span class="cl">## Host is up (0.047s latency).
+</span></span><span class="line"><span class="cl">## 
+</span></span><span class="line"><span class="cl">## PORT     STATE SERVICE         VERSION
+</span></span><span class="line"><span class="cl">## 22/tcp   open  ssh             OpenSSH 8.2p1 Ubuntu 4ubuntu0.5 (Ubuntu Linux; protocol 2.0)
+</span></span><span class="line"><span class="cl">## | ssh-hostkey: 
+</span></span><span class="line"><span class="cl">## |   3072 ad0d84a3fdcc98a478fef94915dae16d (RSA)
+</span></span><span class="line"><span class="cl">## |   256 dfd6a39f68269dfc7c6a0c29e961f00c (ECDSA)
+</span></span><span class="line"><span class="cl">## |_  256 5797565def793c2fcbdb35fff17c615c (ED25519)
+</span></span><span class="line"><span class="cl">## 80/tcp   open  http            nginx 1.18.0 (Ubuntu)
+</span></span><span class="line"><span class="cl">## |_http-title: Soccer - Index 
+</span></span><span class="line"><span class="cl">## |_http-server-header: nginx/1.18.0 (Ubuntu)
+</span></span><span class="line"><span class="cl">## 9091/tcp open  xmltec-xmlmail?
+</span></span><span class="line"><span class="cl">## | fingerprint-strings: 
+</span></span><span class="line"><span class="cl">## |   DNSStatusRequestTCP, DNSVersionBindReqTCP, Help, RPCCheck, SSLSessionReq, drda, informix: 
+</span></span><span class="line"><span class="cl">## |     HTTP/1.1 400 Bad Request
+</span></span><span class="line"><span class="cl">## |
+</span></span><span class="line"><span class="cl">## ...
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Vemos un dominio al que apunta el servidor por el puerto 80, por lo que lo inlcuimos en nuestro archivo hosts. Vemos que además hay un servicio en el puerto 9091 relacionado con correo electrónico &ldquo;xmltec-xmlmail?&rdquo; que nmap no es capaz de reconocer.</p>
+<p>Vamos a empezar echando un vistazo a la página web y veremos después.</p>
+<h2 id="obteniendo-acceso-a-la-máquina-víctima">Obteniendo acceso a la máquina víctima</h2>
+<p>La página principal no tiene contenido relevante, por lo que vamos a enumerar recursos disponibles o subdominios válidos vamos a usar la herramienta gobuster:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"> gobuster dir -w /usr/share/SecLists/Discovery/Web-Content/directory-list-2.3-medium.txt -u http://soccer.htb/
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Vemos un directorio &ldquo;tiny/&rdquo; al que podemos acceder y nos lleva a la página de un gestor de ficheros al que podemos acceder con las credenciales de administración por defecto <strong>admin/admin@123</strong>. Además podemos obtener información relevante como que por detrás se está ejecutando php.</p>
+<h3 id="ganando-rce">Ganando RCE</h3>
+<p>Una vez que hemos accedido lo primero que se me ocurra es subir un fichero y ver si puedo acceder desde el navegador y el contenido se ejecuta &hellip; y efectivamente:</p>
+<p><img src="/p/2023/soccer-machine/soccer1.png"
+	width="1404"
+	height="414"
+	srcset="/p/2023/soccer-machine/soccer1_hu43281fbffb7aa6e1e702ec641dbfe663_98087_480x0_resize_box_3.png 480w, /p/2023/soccer-machine/soccer1_hu43281fbffb7aa6e1e702ec641dbfe663_98087_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="339"
+		data-flex-basis="813px"
+	
+></p>
+<p>He de decir que hay una tarea cron por detrás que elimina aquello que subamos al cabo de unos minutos. Ahora vamos a subir un simple fichero php que nos permita obtener ejecución arbitraria de comandos (RCE) y por ende una reverse shell.</p>
+<h2 id="escalada-de-privilegios--a-medias">Escalada de privilegios &hellip; (a medias)</h2>
+<p>La escalada de privilegios es sencilla; haciendo una breve búsqueda por posibles agujeros del sistema, nos encontramos con lo siguiente:</p>
+<p><img src="/p/2023/soccer-machine/soccer2.png"
+	width="461"
+	height="419"
+	srcset="/p/2023/soccer-machine/soccer2_hu8d3d2d5ae6b5b90fe2a13e94990b6afd_49280_480x0_resize_box_3.png 480w, /p/2023/soccer-machine/soccer2_hu8d3d2d5ae6b5b90fe2a13e94990b6afd_49280_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="110"
+		data-flex-basis="264px"
+	
+></p>
+<p>Sí, el binario de bash tiene permisos <strong>suid</strong>, por lo que haciendo lo siguiente, ya podemos obtener las flags de usuario y root:</p>
+<p><img src="/p/2023/soccer-machine/soccer3.png"
+	width="906"
+	height="111"
+	srcset="/p/2023/soccer-machine/soccer3_hu71659093fcc1d9fd7075482f1f2e2579_17736_480x0_resize_box_3.png 480w, /p/2023/soccer-machine/soccer3_hu71659093fcc1d9fd7075482f1f2e2579_17736_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="816"
+		data-flex-basis="1958px"
+	
+></p>
+<h3 id="escalada-de-privilegios--completa">Escalada de privilegios &hellip; (completa)</h3>
+<p><strong>NOTA:</strong> Resulta que la máquina no se hace del todo así &hellip; ¿os acordáis del puerto del principio? El 9091. Me extrañó mucho que la máquina tuviera el suid en el binario de bash así de primera, y efectivamente debió ser porque los otros usuarios ya lo habían conseguido&hellip;</p>
+<p>De todos modos, para ser honesto volví a hacer la máquina de nuevo, lo que me sirvió para aprender a hacer pentesting de web-socket y a entender como funcionan &hellip; ¡es increíble! adjunto algunas capturas del camino a seguir:</p>
+<p>Como me quedé extrañado con la resolución, miré el foro de discusión de la plataforma y vi que hablaban sobre <strong>otro subdominio</strong>; miré el fichero hosts y &hellip; eureka&hellip; no había completado la máquina del todo</p>
+<p><img src="/p/2023/soccer-machine/soccer4.png"
+	width="802"
+	height="118"
+	srcset="/p/2023/soccer-machine/soccer4_hu0847011d00f1148449efa3cd9704d52e_23800_480x0_resize_box_3.png 480w, /p/2023/soccer-machine/soccer4_hu0847011d00f1148449efa3cd9704d52e_23800_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="679"
+		data-flex-basis="1631px"
+	
+></p>
+<p>Accediendo a ese subdominio me registré y comprobé que la petición era enviada a un web socket ( el puerto desconocido de antes)</p>
+<p><img src="/p/2023/soccer-machine/soccer5.png"
+	width="366"
+	height="272"
+	srcset="/p/2023/soccer-machine/soccer5_hu09567157ba336f0a3b9c788c61a63fd7_30296_480x0_resize_box_3.png 480w, /p/2023/soccer-machine/soccer5_hu09567157ba336f0a3b9c788c61a63fd7_30296_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="134"
+		data-flex-basis="322px"
+	
+></p>
+<p><img src="/p/2023/soccer-machine/soccer6.png"
+	width="634"
+	height="157"
+	srcset="/p/2023/soccer-machine/soccer6_hu4cd660ffc331c26a3cc61efb3c45096f_36142_480x0_resize_box_3.png 480w, /p/2023/soccer-machine/soccer6_hu4cd660ffc331c26a3cc61efb3c45096f_36142_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="403"
+		data-flex-basis="969px"
+	
+></p>
+<p>Con websocat establecí comunicación para asegurarme y efectivamente me devolvía la misma respuesta al introducir cualquier cadena de texto. Echando un vistazo al fuente de la página se tramita un apartado &ldquo;id&rdquo; y había visto antes que se estaba ejecutando mysql en la máquina víctima, lo que me hizo pensar en una SQLi.</p>
+<p>Encontré por internet un <a class="link" href="https://rayhan0x01.github.io/ctf/2021/04/02/blind-sqli-over-websocket-automation.html"  target="_blank" rel="noopener"
+    >script e información con la que acontecer la inyección a través del websocket</a>, por lo que una vez ejecutado, solo tuve que extraer la información. Básicamente el programa actúa de intermediario y traduce las peticiones.</p>
+<p><img src="/p/2023/soccer-machine/soccer7.png"
+	width="673"
+	height="188"
+	srcset="/p/2023/soccer-machine/soccer7_huc6297df488b2ef53f91998b78620b69e_41916_480x0_resize_box_3.png 480w, /p/2023/soccer-machine/soccer7_huc6297df488b2ef53f91998b78620b69e_41916_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="357"
+		data-flex-basis="859px"
+	
+></p>
+<p>Podemos ver usuario y contraseña, lo cual nos servirá para establecer conexión a través de ssh.</p>
+<p>La escalada de privilegios es similar a la anterior: abusamos de los privilegios como root y a raíz de eso habilitar la flag suid en bash. Lo hacemos con un script llamado <strong>doas</strong> (me costó la misma vida encontrarlo en la máquina).</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/sqli/">sqli</a>
+        
+            <a href="/tags/websockets/">websockets</a>
+        
+            <a href="/tags/rce/">rce</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">Contenidos relacionados</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/2023/squashed-machine/">
+        
+        
+            <div class="article-image">
+                <img src="/p/2023/squashed-machine/landing.03fa6e1a4cb646a3b1744e0aebe9f181.png" 
+                        width="1920" 
+                        height="1080" 
+                        loading="lazy"
+                        alt="Featured image of post Squashed Machine"
+                        
+                        data-hash="md5-A/puGky2RqOxdE4K6&#43;nxgQ==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Squashed Machine</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/2023/metatwo-machine/">
+        
+        
+            <div class="article-image">
+                <img src="/p/2023/metatwo-machine/landing.4ab57de3831f316fac9172831f1faf3b.png" 
+                        width="1920" 
+                        height="1080" 
+                        loading="lazy"
+                        alt="Featured image of post MetaTwo Machine"
+                        
+                        data-hash="md5-SrV944MfMW&#43;skXKDHx&#43;vOw==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">MetaTwo Machine</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/2023/investigation-machine/">
+        
+        
+            <div class="article-image">
+                <img src="/p/2023/investigation-machine/landing.fa199150ea6f47324621476288962779.png" 
+                        width="1920" 
+                        height="1080" 
+                        loading="lazy"
+                        alt="Featured image of post Investigation Machine"
+                        
+                        data-hash="md5-&#43;hmRUOpvRzJGIUdiiJYneQ==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Investigation Machine</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/2023/stocker-machine/">
+        
+        
+            <div class="article-image">
+                <img src="/p/2023/stocker-machine/landing.68db51351a961a770e3391348a38dab9.png" 
+                        width="1920" 
+                        height="1080" 
+                        loading="lazy"
+                        alt="Featured image of post Stocker Machine"
+                        
+                        data-hash="md5-aNtRNRqWGncOM5E0ijjauQ==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Stocker Machine</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/2023/precious-machine/">
+        
+        
+            <div class="article-image">
+                <img src="/p/2023/precious-machine/landing.be74656f9a7d9749d196b350c0a32506.png" 
+                        width="1920" 
+                        height="1080" 
+                        loading="lazy"
+                        alt="Featured image of post Precious Machine"
+                        
+                        data-hash="md5-vnRlb5p9l0nRlrNQwKMlBg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Precious Machine</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2023 4rtic f0x
+    </section>
+    
+    <section class="powerby">
+        Tema <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.16.0">Stack</a></b> diseñado por <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

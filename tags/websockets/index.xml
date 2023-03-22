@@ -5,13 +5,14 @@
         <link>/tags/websockets/</link>
         <description>Recent content in websockets on 4rtic f0x</description>
         <generator>Hugo -- gohugo.io</generator>
-        <language>es</language><atom:link href="/tags/websockets/index.xml" rel="self" type="application/rss+xml" /><item>
+        <language>es</language>
+        <lastBuildDate>Fri, 03 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="/tags/websockets/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Soccer Machine</title>
-        <link>/p/1/soccer-machine/</link>
-        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        <link>/p/2023/soccer-machine/</link>
+        <pubDate>Fri, 03 Feb 2023 00:00:00 +0000</pubDate>
         
-        <guid>/p/1/soccer-machine/</guid>
-        <description>&lt;img src="/p/1/soccer-machine/landing.png" alt="Featured image of post Soccer Machine" /&gt;&lt;h2 id=&#34;reconocimiento&#34;&gt;Reconocimiento&lt;/h2&gt;
+        <guid>/p/2023/soccer-machine/</guid>
+        <description>&lt;img src="/p/2023/soccer-machine/landing.png" alt="Featured image of post Soccer Machine" /&gt;&lt;h2 id=&#34;reconocimiento&#34;&gt;Reconocimiento&lt;/h2&gt;
 &lt;p&gt;Empezamos con nmap para ver los puertos abiertos de la máquina:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -134,10 +135,10 @@
 &lt;/div&gt;&lt;p&gt;Vemos un directorio &amp;ldquo;tiny/&amp;rdquo; al que podemos acceder y nos lleva a la página de un gestor de ficheros al que podemos acceder con las credenciales de administración por defecto &lt;strong&gt;admin/admin@123&lt;/strong&gt;. Además podemos obtener información relevante como que por detrás se está ejecutando php.&lt;/p&gt;
 &lt;h3 id=&#34;ganando-rce&#34;&gt;Ganando RCE&lt;/h3&gt;
 &lt;p&gt;Una vez que hemos accedido lo primero que se me ocurra es subir un fichero y ver si puedo acceder desde el navegador y el contenido se ejecuta &amp;hellip; y efectivamente:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/p/1/soccer-machine/soccer1.png&#34;
+&lt;p&gt;&lt;img src=&#34;/p/2023/soccer-machine/soccer1.png&#34;
 	width=&#34;1404&#34;
 	height=&#34;414&#34;
-	srcset=&#34;/p/1/soccer-machine/soccer1_hu43281fbffb7aa6e1e702ec641dbfe663_98087_480x0_resize_box_3.png 480w, /p/1/soccer-machine/soccer1_hu43281fbffb7aa6e1e702ec641dbfe663_98087_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;/p/2023/soccer-machine/soccer1_hu43281fbffb7aa6e1e702ec641dbfe663_98087_480x0_resize_box_3.png 480w, /p/2023/soccer-machine/soccer1_hu43281fbffb7aa6e1e702ec641dbfe663_98087_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -149,10 +150,10 @@
 &lt;p&gt;He de decir que hay una tarea cron por detrás que elimina aquello que subamos al cabo de unos minutos. Ahora vamos a subir un simple fichero php que nos permita obtener ejecución arbitraria de comandos (RCE) y por ende una reverse shell.&lt;/p&gt;
 &lt;h2 id=&#34;escalada-de-privilegios--a-medias&#34;&gt;Escalada de privilegios &amp;hellip; (a medias)&lt;/h2&gt;
 &lt;p&gt;La escalada de privilegios es sencilla; haciendo una breve búsqueda por posibles agujeros del sistema, nos encontramos con lo siguiente:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/p/1/soccer-machine/soccer2.png&#34;
+&lt;p&gt;&lt;img src=&#34;/p/2023/soccer-machine/soccer2.png&#34;
 	width=&#34;461&#34;
 	height=&#34;419&#34;
-	srcset=&#34;/p/1/soccer-machine/soccer2_hu8d3d2d5ae6b5b90fe2a13e94990b6afd_49280_480x0_resize_box_3.png 480w, /p/1/soccer-machine/soccer2_hu8d3d2d5ae6b5b90fe2a13e94990b6afd_49280_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;/p/2023/soccer-machine/soccer2_hu8d3d2d5ae6b5b90fe2a13e94990b6afd_49280_480x0_resize_box_3.png 480w, /p/2023/soccer-machine/soccer2_hu8d3d2d5ae6b5b90fe2a13e94990b6afd_49280_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -162,10 +163,10 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;Sí, el binario de bash tiene permisos &lt;strong&gt;suid&lt;/strong&gt;, por lo que haciendo lo siguiente, ya podemos obtener las flags de usuario y root:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/p/1/soccer-machine/soccer3.png&#34;
+&lt;p&gt;&lt;img src=&#34;/p/2023/soccer-machine/soccer3.png&#34;
 	width=&#34;906&#34;
 	height=&#34;111&#34;
-	srcset=&#34;/p/1/soccer-machine/soccer3_hu71659093fcc1d9fd7075482f1f2e2579_17736_480x0_resize_box_3.png 480w, /p/1/soccer-machine/soccer3_hu71659093fcc1d9fd7075482f1f2e2579_17736_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;/p/2023/soccer-machine/soccer3_hu71659093fcc1d9fd7075482f1f2e2579_17736_480x0_resize_box_3.png 480w, /p/2023/soccer-machine/soccer3_hu71659093fcc1d9fd7075482f1f2e2579_17736_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -178,10 +179,10 @@
 &lt;p&gt;&lt;strong&gt;NOTA:&lt;/strong&gt; Resulta que la máquina no se hace del todo así &amp;hellip; ¿os acordáis del puerto del principio? El 9091. Me extrañó mucho que la máquina tuviera el suid en el binario de bash así de primera, y efectivamente debió ser porque los otros usuarios ya lo habían conseguido&amp;hellip;&lt;/p&gt;
 &lt;p&gt;De todos modos, para ser honesto volví a hacer la máquina de nuevo, lo que me sirvió para aprender a hacer pentesting de web-socket y a entender como funcionan &amp;hellip; ¡es increíble! adjunto algunas capturas del camino a seguir:&lt;/p&gt;
 &lt;p&gt;Como me quedé extrañado con la resolución, miré el foro de discusión de la plataforma y vi que hablaban sobre &lt;strong&gt;otro subdominio&lt;/strong&gt;; miré el fichero hosts y &amp;hellip; eureka&amp;hellip; no había completado la máquina del todo&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/p/1/soccer-machine/soccer4.png&#34;
+&lt;p&gt;&lt;img src=&#34;/p/2023/soccer-machine/soccer4.png&#34;
 	width=&#34;802&#34;
 	height=&#34;118&#34;
-	srcset=&#34;/p/1/soccer-machine/soccer4_hu0847011d00f1148449efa3cd9704d52e_23800_480x0_resize_box_3.png 480w, /p/1/soccer-machine/soccer4_hu0847011d00f1148449efa3cd9704d52e_23800_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;/p/2023/soccer-machine/soccer4_hu0847011d00f1148449efa3cd9704d52e_23800_480x0_resize_box_3.png 480w, /p/2023/soccer-machine/soccer4_hu0847011d00f1148449efa3cd9704d52e_23800_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -191,10 +192,10 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;Accediendo a ese subdominio me registré y comprobé que la petición era enviada a un web socket ( el puerto desconocido de antes)&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/p/1/soccer-machine/soccer5.png&#34;
+&lt;p&gt;&lt;img src=&#34;/p/2023/soccer-machine/soccer5.png&#34;
 	width=&#34;366&#34;
 	height=&#34;272&#34;
-	srcset=&#34;/p/1/soccer-machine/soccer5_hu09567157ba336f0a3b9c788c61a63fd7_30296_480x0_resize_box_3.png 480w, /p/1/soccer-machine/soccer5_hu09567157ba336f0a3b9c788c61a63fd7_30296_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;/p/2023/soccer-machine/soccer5_hu09567157ba336f0a3b9c788c61a63fd7_30296_480x0_resize_box_3.png 480w, /p/2023/soccer-machine/soccer5_hu09567157ba336f0a3b9c788c61a63fd7_30296_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -203,10 +204,10 @@
 		data-flex-basis=&#34;322px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/p/1/soccer-machine/soccer6.png&#34;
+&lt;p&gt;&lt;img src=&#34;/p/2023/soccer-machine/soccer6.png&#34;
 	width=&#34;634&#34;
 	height=&#34;157&#34;
-	srcset=&#34;/p/1/soccer-machine/soccer6_hu4cd660ffc331c26a3cc61efb3c45096f_36142_480x0_resize_box_3.png 480w, /p/1/soccer-machine/soccer6_hu4cd660ffc331c26a3cc61efb3c45096f_36142_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;/p/2023/soccer-machine/soccer6_hu4cd660ffc331c26a3cc61efb3c45096f_36142_480x0_resize_box_3.png 480w, /p/2023/soccer-machine/soccer6_hu4cd660ffc331c26a3cc61efb3c45096f_36142_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -218,10 +219,10 @@
 &lt;p&gt;Con websocat establecí comunicación para asegurarme y efectivamente me devolvía la misma respuesta al introducir cualquier cadena de texto. Echando un vistazo al fuente de la página se tramita un apartado &amp;ldquo;id&amp;rdquo; y había visto antes que se estaba ejecutando mysql en la máquina víctima, lo que me hizo pensar en una SQLi.&lt;/p&gt;
 &lt;p&gt;Encontré por internet un &lt;a class=&#34;link&#34; href=&#34;https://rayhan0x01.github.io/ctf/2021/04/02/blind-sqli-over-websocket-automation.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;script e información con la que acontecer la inyección a través del websocket&lt;/a&gt;, por lo que una vez ejecutado, solo tuve que extraer la información. Básicamente el programa actúa de intermediario y traduce las peticiones.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/p/1/soccer-machine/soccer7.png&#34;
+&lt;p&gt;&lt;img src=&#34;/p/2023/soccer-machine/soccer7.png&#34;
 	width=&#34;673&#34;
 	height=&#34;188&#34;
-	srcset=&#34;/p/1/soccer-machine/soccer7_huc6297df488b2ef53f91998b78620b69e_41916_480x0_resize_box_3.png 480w, /p/1/soccer-machine/soccer7_huc6297df488b2ef53f91998b78620b69e_41916_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;/p/2023/soccer-machine/soccer7_huc6297df488b2ef53f91998b78620b69e_41916_480x0_resize_box_3.png 480w, /p/2023/soccer-machine/soccer7_huc6297df488b2ef53f91998b78620b69e_41916_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	

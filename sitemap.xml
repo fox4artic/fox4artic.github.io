@@ -3,49 +3,91 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>/</loc>
-  </url><url>
-    <loc>/tags/abuso-privilegios/</loc>
+    <lastmod>2023-03-01T00:00:00+00:00</lastmod>
   </url><url>
     <loc>/categories/</loc>
+    <lastmod>2023-03-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/categories/htb/</loc>
+    <lastmod>2023-03-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/tags/nfs/</loc>
+    <lastmod>2023-03-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/post/</loc>
+    <lastmod>2023-03-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/tags/rce/</loc>
+    <lastmod>2023-03-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/tags/rpc/</loc>
+    <lastmod>2023-03-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/p/2023/squashed-machine/</loc>
+    <lastmod>2023-03-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/tags/</loc>
+    <lastmod>2023-03-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/tags/x11/</loc>
+    <lastmod>2023-03-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/tags/forensics/</loc>
+    <lastmod>2023-02-15T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/tags/ghidra/</loc>
+    <lastmod>2023-02-15T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/p/2023/investigation-machine/</loc>
+    <lastmod>2023-02-15T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/tags/reverse-engineering/</loc>
+    <lastmod>2023-02-15T00:00:00+00:00</lastmod>
   </url><url>
     <loc>/tags/cve/</loc>
+    <lastmod>2023-02-10T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/tags/john/</loc>
+    <lastmod>2023-02-10T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/p/2023/metatwo-machine/</loc>
+    <lastmod>2023-02-10T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/tags/sqli/</loc>
+    <lastmod>2023-02-10T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/tags/wp/</loc>
+    <lastmod>2023-02-10T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/tags/xxe/</loc>
+    <lastmod>2023-02-10T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/p/2023/soccer-machine/</loc>
+    <lastmod>2023-02-03T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/tags/websockets/</loc>
+    <lastmod>2023-02-03T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/tags/abuso-privilegios/</loc>
+    <lastmod>2023-02-02T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/tags/login-bypass/</loc>
+    <lastmod>2023-02-02T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/p/2023/stocker-machine/</loc>
+    <lastmod>2023-02-02T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/p/2023/precious-machine/</loc>
+    <lastmod>2023-02-01T00:00:00+00:00</lastmod>
   </url><url>
     <loc>/cve-exploits/</loc>
   </url><url>
-    <loc>/categories/htb/</loc>
-  </url><url>
-    <loc>/tags/john/</loc>
-  </url><url>
-    <loc>/tags/login-bypass/</loc>
-  </url><url>
-    <loc>/p/1/metatwo-machine/</loc>
-  </url><url>
     <loc>/page/</loc>
-  </url><url>
-    <loc>/post/</loc>
-  </url><url>
-    <loc>/p/1/precious-machine/</loc>
-  </url><url>
-    <loc>/tags/rce/</loc>
   </url><url>
     <loc>/scripts/</loc>
   </url><url>
     <loc>/search/</loc>
   </url><url>
-    <loc>/p/1/soccer-machine/</loc>
-  </url><url>
-    <loc>/tags/sqli/</loc>
-  </url><url>
-    <loc>/p/1/stocker-machine/</loc>
-  </url><url>
-    <loc>/tags/</loc>
-  </url><url>
     <loc>/categories/test/</loc>
-  </url><url>
-    <loc>/tags/websockets/</loc>
-  </url><url>
-    <loc>/tags/wp/</loc>
-  </url><url>
-    <loc>/tags/xxe/</loc>
   </url>
 </urlset>

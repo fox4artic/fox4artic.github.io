@@ -5,13 +5,14 @@
         <link>/tags/wp/</link>
         <description>Recent content in wp on 4rtic f0x</description>
         <generator>Hugo -- gohugo.io</generator>
-        <language>es</language><atom:link href="/tags/wp/index.xml" rel="self" type="application/rss+xml" /><item>
+        <language>es</language>
+        <lastBuildDate>Fri, 10 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="/tags/wp/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>MetaTwo Machine</title>
-        <link>/p/1/metatwo-machine/</link>
-        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        <link>/p/2023/metatwo-machine/</link>
+        <pubDate>Fri, 10 Feb 2023 00:00:00 +0000</pubDate>
         
-        <guid>/p/1/metatwo-machine/</guid>
-        <description>&lt;img src="/p/1/metatwo-machine/landing.png" alt="Featured image of post MetaTwo Machine" /&gt;&lt;h2 id=&#34;reconocimiento&#34;&gt;Reconocimiento&lt;/h2&gt;
+        <guid>/p/2023/metatwo-machine/</guid>
+        <description>&lt;img src="/p/2023/metatwo-machine/landing.png" alt="Featured image of post MetaTwo Machine" /&gt;&lt;h2 id=&#34;reconocimiento&#34;&gt;Reconocimiento&lt;/h2&gt;
 &lt;p&gt;Empezamos viendo si la máquina víctima está disponible:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -143,10 +144,10 @@
 &lt;h2 id=&#34;obteniendo-acceso-a-la-máquina-víctima&#34;&gt;Obteniendo acceso a la máquina víctima&lt;/h2&gt;
 &lt;h3 id=&#34;plugin-wp-cve-2022-0739&#34;&gt;Plugin WP (CVE-2022-0739)&lt;/h3&gt;
 &lt;p&gt;Lo primero que llama la atención es:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/p/1/metatwo-machine/metatwo1.png&#34;
+&lt;p&gt;&lt;img src=&#34;/p/2023/metatwo-machine/metatwo1.png&#34;
 	width=&#34;1420&#34;
 	height=&#34;470&#34;
-	srcset=&#34;/p/1/metatwo-machine/metatwo1_hu361bad7feed0b469fa7224698c2186c1_19515_480x0_resize_box_3.png 480w, /p/1/metatwo-machine/metatwo1_hu361bad7feed0b469fa7224698c2186c1_19515_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;/p/2023/metatwo-machine/metatwo1_hu361bad7feed0b469fa7224698c2186c1_19515_480x0_resize_box_3.png 480w, /p/2023/metatwo-machine/metatwo1_hu361bad7feed0b469fa7224698c2186c1_19515_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -156,10 +157,10 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;Por tanto hay que buscar a ver si hay algún plugin instalado y ver si es vulnerable; echando un vistazo al fuente de la página:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/p/1/metatwo-machine/metatwo2.png&#34;
+&lt;p&gt;&lt;img src=&#34;/p/2023/metatwo-machine/metatwo2.png&#34;
 	width=&#34;1001&#34;
 	height=&#34;295&#34;
-	srcset=&#34;/p/1/metatwo-machine/metatwo2_hu9db2242da82ac39bc206086613628754_98106_480x0_resize_box_3.png 480w, /p/1/metatwo-machine/metatwo2_hu9db2242da82ac39bc206086613628754_98106_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;/p/2023/metatwo-machine/metatwo2_hu9db2242da82ac39bc206086613628754_98106_480x0_resize_box_3.png 480w, /p/2023/metatwo-machine/metatwo2_hu9db2242da82ac39bc206086613628754_98106_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -169,10 +170,10 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;Haciendo una búsqueda rápida, encontramos en wpscan:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/p/1/metatwo-machine/metatwo3.png&#34;
+&lt;p&gt;&lt;img src=&#34;/p/2023/metatwo-machine/metatwo3.png&#34;
 	width=&#34;1442&#34;
 	height=&#34;643&#34;
-	srcset=&#34;/p/1/metatwo-machine/metatwo3_huddf0032af1e4eb170788348d080f2fb8_182308_480x0_resize_box_3.png 480w, /p/1/metatwo-machine/metatwo3_huddf0032af1e4eb170788348d080f2fb8_182308_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;/p/2023/metatwo-machine/metatwo3_huddf0032af1e4eb170788348d080f2fb8_182308_480x0_resize_box_3.png 480w, /p/2023/metatwo-machine/metatwo3_huddf0032af1e4eb170788348d080f2fb8_182308_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -182,10 +183,10 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;Lo que hay que hacer es crear una nueva entrada en el calendario y obtener un nonce de la petición POST al servidor:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/p/1/metatwo-machine/metatwo4.png&#34;
+&lt;p&gt;&lt;img src=&#34;/p/2023/metatwo-machine/metatwo4.png&#34;
 	width=&#34;1114&#34;
 	height=&#34;409&#34;
-	srcset=&#34;/p/1/metatwo-machine/metatwo4_hucdfd94e817d48c9e577939d39ead152d_60758_480x0_resize_box_3.png 480w, /p/1/metatwo-machine/metatwo4_hucdfd94e817d48c9e577939d39ead152d_60758_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;/p/2023/metatwo-machine/metatwo4_hucdfd94e817d48c9e577939d39ead152d_60758_480x0_resize_box_3.png 480w, /p/2023/metatwo-machine/metatwo4_hucdfd94e817d48c9e577939d39ead152d_60758_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -239,10 +240,10 @@
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;Esto permite obtener la salida del SQLi por consola y fácilmente poder filtrar por expresiones regulares. La &amp;lsquo;query&amp;rsquo; la introducimos como primer argumento a la hora de ejecutar el script.&lt;/p&gt;
 &lt;p&gt;Ejecutando:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/p/1/metatwo-machine/metatwo5.png&#34;
+&lt;p&gt;&lt;img src=&#34;/p/2023/metatwo-machine/metatwo5.png&#34;
 	width=&#34;1892&#34;
 	height=&#34;289&#34;
-	srcset=&#34;/p/1/metatwo-machine/metatwo5_hu5aa011f01e324bf25be235774e3685c5_71569_480x0_resize_box_3.png 480w, /p/1/metatwo-machine/metatwo5_hu5aa011f01e324bf25be235774e3685c5_71569_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;/p/2023/metatwo-machine/metatwo5_hu5aa011f01e324bf25be235774e3685c5_71569_480x0_resize_box_3.png 480w, /p/2023/metatwo-machine/metatwo5_hu5aa011f01e324bf25be235774e3685c5_71569_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -253,10 +254,10 @@
 &gt;&lt;/p&gt;
 &lt;h3 id=&#34;john-the-ripper&#34;&gt;John the Ripper&lt;/h3&gt;
 &lt;p&gt;Vemos que la vulnerabilidad es explotada correctamente y ya podemos empezar a recopilar información, primero las tablas que nos interesan, después las columnas de esas tablas y posteriormente usuarios y contraseñas (hash):&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/p/1/metatwo-machine/metatwo6.png&#34;
+&lt;p&gt;&lt;img src=&#34;/p/2023/metatwo-machine/metatwo6.png&#34;
 	width=&#34;1885&#34;
 	height=&#34;258&#34;
-	srcset=&#34;/p/1/metatwo-machine/metatwo6_hu74830be0fc78cb39539030f326cf5bae_44923_480x0_resize_box_3.png 480w, /p/1/metatwo-machine/metatwo6_hu74830be0fc78cb39539030f326cf5bae_44923_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;/p/2023/metatwo-machine/metatwo6_hu74830be0fc78cb39539030f326cf5bae_44923_480x0_resize_box_3.png 480w, /p/2023/metatwo-machine/metatwo6_hu74830be0fc78cb39539030f326cf5bae_44923_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -265,10 +266,10 @@
 		data-flex-basis=&#34;1753px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/p/1/metatwo-machine/metatwo7.png&#34;
+&lt;p&gt;&lt;img src=&#34;/p/2023/metatwo-machine/metatwo7.png&#34;
 	width=&#34;977&#34;
 	height=&#34;418&#34;
-	srcset=&#34;/p/1/metatwo-machine/metatwo7_hu47f639495798cf1781cbe19964932c50_93671_480x0_resize_box_3.png 480w, /p/1/metatwo-machine/metatwo7_hu47f639495798cf1781cbe19964932c50_93671_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;/p/2023/metatwo-machine/metatwo7_hu47f639495798cf1781cbe19964932c50_93671_480x0_resize_box_3.png 480w, /p/2023/metatwo-machine/metatwo7_hu47f639495798cf1781cbe19964932c50_93671_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -277,10 +278,10 @@
 		data-flex-basis=&#34;560px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/p/1/metatwo-machine/metatwo8.png&#34;
+&lt;p&gt;&lt;img src=&#34;/p/2023/metatwo-machine/metatwo8.png&#34;
 	width=&#34;1883&#34;
 	height=&#34;412&#34;
-	srcset=&#34;/p/1/metatwo-machine/metatwo8_huf7a57ddecb9abea9ec158ec5b5d5a5e2_134205_480x0_resize_box_3.png 480w, /p/1/metatwo-machine/metatwo8_huf7a57ddecb9abea9ec158ec5b5d5a5e2_134205_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;/p/2023/metatwo-machine/metatwo8_huf7a57ddecb9abea9ec158ec5b5d5a5e2_134205_480x0_resize_box_3.png 480w, /p/2023/metatwo-machine/metatwo8_huf7a57ddecb9abea9ec158ec5b5d5a5e2_134205_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -290,10 +291,10 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;Guardamos las contraseñas en un fichero y ejecutamos &amp;lsquo;john&amp;rsquo; para obtener la contraseña:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/p/1/metatwo-machine/metatwo9.png&#34;
+&lt;p&gt;&lt;img src=&#34;/p/2023/metatwo-machine/metatwo9.png&#34;
 	width=&#34;455&#34;
 	height=&#34;85&#34;
-	srcset=&#34;/p/1/metatwo-machine/metatwo9_hue53c89140396adc8ac075592325550b9_6413_480x0_resize_box_3.png 480w, /p/1/metatwo-machine/metatwo9_hue53c89140396adc8ac075592325550b9_6413_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;/p/2023/metatwo-machine/metatwo9_hue53c89140396adc8ac075592325550b9_6413_480x0_resize_box_3.png 480w, /p/2023/metatwo-machine/metatwo9_hue53c89140396adc8ac075592325550b9_6413_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -305,10 +306,10 @@
 &lt;p&gt;Con esto accedemos a WP como manager.&lt;/p&gt;
 &lt;h3 id=&#34;xxe&#34;&gt;XXE&lt;/h3&gt;
 &lt;p&gt;Una vez dentro podemos subir archivos &amp;hellip; aunque solo deja subir archivos de sonido/imagen. Podemos ver la versión exacta del wordpress y a partir de ello encontrar una serie de vulnerabilidades. Tras ver si alguna de ellas era útil encontré algo que no conocía hasta ahora, llamado XXE; esta vulnerabilidad nos permite obtener el contenido de ficheros mediante la inyección de XML. Principalmente intento listar el contenido de &amp;lsquo;/etc/passwd&amp;rsquo; para ver si funciona. Tenemos que crear un fichero con los primeros bytes que tendría un fichero de audio y posteriormente el XML pertinente. Una vez hecho esto apuntamos hacia un servicio web de nuestra máquina que contendrá el código restante para filtrar archivos. Una vez hecho esto, obtenemos (codificado) el contenido del fichero en cuestión:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/p/1/metatwo-machine/metatwo10.png&#34;
+&lt;p&gt;&lt;img src=&#34;/p/2023/metatwo-machine/metatwo10.png&#34;
 	width=&#34;1885&#34;
 	height=&#34;616&#34;
-	srcset=&#34;/p/1/metatwo-machine/metatwo10_hu7ba9fa39ac076f82e8ce6fd800f4838c_319328_480x0_resize_box_3.png 480w, /p/1/metatwo-machine/metatwo10_hu7ba9fa39ac076f82e8ce6fd800f4838c_319328_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;/p/2023/metatwo-machine/metatwo10_hu7ba9fa39ac076f82e8ce6fd800f4838c_319328_480x0_resize_box_3.png 480w, /p/2023/metatwo-machine/metatwo10_hu7ba9fa39ac076f82e8ce6fd800f4838c_319328_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -318,10 +319,10 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;Decodificando:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/p/1/metatwo-machine/metatwo11.png&#34;
+&lt;p&gt;&lt;img src=&#34;/p/2023/metatwo-machine/metatwo11.png&#34;
 	width=&#34;1105&#34;
 	height=&#34;381&#34;
-	srcset=&#34;/p/1/metatwo-machine/metatwo11_huda08b8503d17089fd9f544734a0cadb4_91676_480x0_resize_box_3.png 480w, /p/1/metatwo-machine/metatwo11_huda08b8503d17089fd9f544734a0cadb4_91676_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;/p/2023/metatwo-machine/metatwo11_huda08b8503d17089fd9f544734a0cadb4_91676_480x0_resize_box_3.png 480w, /p/2023/metatwo-machine/metatwo11_huda08b8503d17089fd9f544734a0cadb4_91676_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -331,10 +332,10 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;Vemos un usuario potencial. Intentamos listar ficheros de configuración, en este caso veamos el del WP:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/p/1/metatwo-machine/metatwo12.png&#34;
+&lt;p&gt;&lt;img src=&#34;/p/2023/metatwo-machine/metatwo12.png&#34;
 	width=&#34;1043&#34;
 	height=&#34;776&#34;
-	srcset=&#34;/p/1/metatwo-machine/metatwo12_hu71c11ecbf9f71bedcf329b0cc000b93a_116900_480x0_resize_box_3.png 480w, /p/1/metatwo-machine/metatwo12_hu71c11ecbf9f71bedcf329b0cc000b93a_116900_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;/p/2023/metatwo-machine/metatwo12_hu71c11ecbf9f71bedcf329b0cc000b93a_116900_480x0_resize_box_3.png 480w, /p/2023/metatwo-machine/metatwo12_hu71c11ecbf9f71bedcf329b0cc000b93a_116900_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -346,10 +347,10 @@
 &lt;p&gt;Dos credenciales; una de ellas para BBDD y otra para el ftp del inicio.&lt;/p&gt;
 &lt;h3 id=&#34;buscando-ficheros-con-ftp&#34;&gt;Buscando ficheros con FTP&lt;/h3&gt;
 &lt;p&gt;Tras buscar un largo rato, encontré el siguiente fichero, que parece que gestiona el envío de email una vez que se crear un nuevo evento; en él obtenemos las credenciales del usuario anterior y accedemos al equipo víctima&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/p/1/metatwo-machine/metatwo13.png&#34;
+&lt;p&gt;&lt;img src=&#34;/p/2023/metatwo-machine/metatwo13.png&#34;
 	width=&#34;1303&#34;
 	height=&#34;147&#34;
-	srcset=&#34;/p/1/metatwo-machine/metatwo13_huee3dcd7f1aa07829825053bb3f6e9469_32650_480x0_resize_box_3.png 480w, /p/1/metatwo-machine/metatwo13_huee3dcd7f1aa07829825053bb3f6e9469_32650_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;/p/2023/metatwo-machine/metatwo13_huee3dcd7f1aa07829825053bb3f6e9469_32650_480x0_resize_box_3.png 480w, /p/2023/metatwo-machine/metatwo13_huee3dcd7f1aa07829825053bb3f6e9469_32650_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -358,10 +359,10 @@
 		data-flex-basis=&#34;2127px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/p/1/metatwo-machine/metatwo14.png&#34;
+&lt;p&gt;&lt;img src=&#34;/p/2023/metatwo-machine/metatwo14.png&#34;
 	width=&#34;693&#34;
 	height=&#34;95&#34;
-	srcset=&#34;/p/1/metatwo-machine/metatwo14_hua501e7b78f43bf00162012b6bffc21fa_15852_480x0_resize_box_3.png 480w, /p/1/metatwo-machine/metatwo14_hua501e7b78f43bf00162012b6bffc21fa_15852_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;/p/2023/metatwo-machine/metatwo14_hua501e7b78f43bf00162012b6bffc21fa_15852_480x0_resize_box_3.png 480w, /p/2023/metatwo-machine/metatwo14_hua501e7b78f43bf00162012b6bffc21fa_15852_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -373,10 +374,10 @@
 &lt;h2 id=&#34;escalada-de-privilegios&#34;&gt;Escalada de Privilegios&lt;/h2&gt;
 &lt;h3 id=&#34;passpie-y-gpg&#34;&gt;Passpie y GPG&lt;/h3&gt;
 &lt;p&gt;Listando por ficheros que pertenecen al usuario, podemos encontrar un software llamado &amp;lsquo;passpie&amp;rsquo;, gestor de contraseñas. Hay algunos ficheros que nos interesan más que otros; si ejecutamos &amp;lsquo;passpie&amp;rsquo; vemos que hay dos credenciales la de nuestro usuario y la de root; si intentamos exportarlas no nos dejará dado que tenemos que tener la &amp;ldquo;passphrase&amp;rdquo;. Para ellos nos descargamos el archivo &amp;lsquo;.keys&amp;rsquo; que contiene las claves privadas y públicas pgp; con gpg2john pasamos la clave privada a un formato entendible para &amp;lsquo;The Ripper&amp;rsquo; a ver si tenemos suerte y podemos obtener la clave que nos falta; tras unos segundos la obtenemos y podemos acceder a una consola con permisos de administrador:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/p/1/metatwo-machine/metatwo15.png&#34;
+&lt;p&gt;&lt;img src=&#34;/p/2023/metatwo-machine/metatwo15.png&#34;
 	width=&#34;795&#34;
 	height=&#34;775&#34;
-	srcset=&#34;/p/1/metatwo-machine/metatwo15_hu07b5f27cbcfed25d7f026b8af0623e60_128954_480x0_resize_box_3.png 480w, /p/1/metatwo-machine/metatwo15_hu07b5f27cbcfed25d7f026b8af0623e60_128954_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;/p/2023/metatwo-machine/metatwo15_hu07b5f27cbcfed25d7f026b8af0623e60_128954_480x0_resize_box_3.png 480w, /p/2023/metatwo-machine/metatwo15_hu07b5f27cbcfed25d7f026b8af0623e60_128954_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -385,10 +386,10 @@
 		data-flex-basis=&#34;246px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/p/1/metatwo-machine/metatwo16.png&#34;
+&lt;p&gt;&lt;img src=&#34;/p/2023/metatwo-machine/metatwo16.png&#34;
 	width=&#34;937&#34;
 	height=&#34;413&#34;
-	srcset=&#34;/p/1/metatwo-machine/metatwo16_hu1bcfa6b55a6dbe72e43b530958ba5fd4_91220_480x0_resize_box_3.png 480w, /p/1/metatwo-machine/metatwo16_hu1bcfa6b55a6dbe72e43b530958ba5fd4_91220_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;/p/2023/metatwo-machine/metatwo16_hu1bcfa6b55a6dbe72e43b530958ba5fd4_91220_480x0_resize_box_3.png 480w, /p/2023/metatwo-machine/metatwo16_hu1bcfa6b55a6dbe72e43b530958ba5fd4_91220_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -397,10 +398,10 @@
 		data-flex-basis=&#34;544px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/p/1/metatwo-machine/metatwo17.png&#34;
+&lt;p&gt;&lt;img src=&#34;/p/2023/metatwo-machine/metatwo17.png&#34;
 	width=&#34;788&#34;
 	height=&#34;646&#34;
-	srcset=&#34;/p/1/metatwo-machine/metatwo17_hucab3ebb73678ade4a5e3baf061069315_78723_480x0_resize_box_3.png 480w, /p/1/metatwo-machine/metatwo17_hucab3ebb73678ade4a5e3baf061069315_78723_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;/p/2023/metatwo-machine/metatwo17_hucab3ebb73678ade4a5e3baf061069315_78723_480x0_resize_box_3.png 480w, /p/2023/metatwo-machine/metatwo17_hucab3ebb73678ade4a5e3baf061069315_78723_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	

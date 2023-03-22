@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>forensics on 4rtic f0x</title>
+        <link>/tags/forensics/</link>
+        <description>Recent content in forensics on 4rtic f0x</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>es</language>
+        <lastBuildDate>Wed, 15 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="/tags/forensics/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Investigation Machine</title>
+        <link>/p/2023/investigation-machine/</link>
+        <pubDate>Wed, 15 Feb 2023 00:00:00 +0000</pubDate>
+        
+        <guid>/p/2023/investigation-machine/</guid>
+        <description>&lt;img src="/p/2023/investigation-machine/landing.png" alt="Featured image of post Investigation Machine" /&gt;&lt;p&gt;Esta máquina es una pasada, me ha encantado, es demasiado bonita.&lt;/p&gt;
+&lt;h2 id=&#34;reconocimiento&#34;&gt;Reconocimiento&lt;/h2&gt;
+&lt;p&gt;Ejecutamos nmap para ver los puertos abiertos:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; nmap -p- --open -T5 -Pn -n 10.10.11.197 -oG openTCPports
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;br&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Starting Nmap 7.93 ( https://nmap.org ) at 2023-02-17 13:03 CET
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Stats: 0:00:05 elapsed; 0 hosts completed (1 up), 1 undergoing Connect Scan
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Connect Scan Timing: About 21.11% done; ETC: 13:03 (0:00:22 remaining)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Nmap scan report for 10.10.11.197
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Host is up (0.045s latency).
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Not shown: 61711 closed tcp ports (conn-refused), 3822 filtered tcp ports (no-response)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Some closed ports may be reported as filtered due to --defeat-rst-ratelimit
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;PORT   STATE SERVICE
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;22/tcp open  ssh
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;80/tcp open  http
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Nmap done: 1 IP address (1 host up) scanned in 16.07 seconds
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Extraemos los puertos relevantes:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; grePorts
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Y lanzamos los scripts de reconocimiento predefinidos de nmap para recopilar más información de los servicios expuestos en la máquina objetivo.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; nmap -p20,80 -sVC 10.10.11.197 -oN servicesTCPports
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;br&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Starting Nmap 7.93 ( https://nmap.org ) at 2023-02-17 13:04 CET
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Nmap scan report for 10.10.11.197
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Host is up (0.046s latency).
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;PORT   STATE SERVICE VERSION
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;22/tcp open  ssh     OpenSSH 8.2p1 Ubuntu 4ubuntu0.5 (Ubuntu Linux; protocol 2.0)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;| ssh-hostkey: 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;|   3072 2f1e6306aa6ebbcc0d19d4152674c6d9 (RSA)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;|   256 274520add2faa73a8373d97c79abf30b (ECDSA)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;|_  256 4245eb916e21020617b2748bc5834fe0 (ED25519)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;80/tcp open  http    Apache httpd 2.4.41
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;|_http-server-header: Apache/2.4.41 (Ubuntu)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;|_http-title: Did not follow redirect to http://eforenzics.htb/
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Service Info: Host: eforenzics.htb; OS: Linux; CPE: cpe:/o:linux:linux_kernel
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Nmap done: 1 IP address (1 host up) scanned in 8.84 seconds
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;obteniendo-acceso-a-la-máquina-víctima&#34;&gt;Obteniendo acceso a la máquina víctima&lt;/h2&gt;
+&lt;p&gt;Vemos una página web a la que podemos subir imágenes para ver los metadatos. Interceptando la petición:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/p/2023/investigation-machine/investigation1.png&#34;
+	width=&#34;822&#34;
+	height=&#34;266&#34;
+	srcset=&#34;/p/2023/investigation-machine/investigation1_huedd821063c55c3178925785137894e5b_32740_480x0_resize_box_3.png 480w, /p/2023/investigation-machine/investigation1_huedd821063c55c3178925785137894e5b_32740_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;309&#34;
+		data-flex-basis=&#34;741px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;Añadimos el dominio a nuestro archivo de hosts. Echamos un vistazo al análisis que hace la página:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/p/2023/investigation-machine/investigation2.png&#34;
+	width=&#34;620&#34;
+	height=&#34;273&#34;
+	srcset=&#34;/p/2023/investigation-machine/investigation2_hu771b50940b239640dac80b04706ad59a_34235_480x0_resize_box_3.png 480w, /p/2023/investigation-machine/investigation2_hu771b50940b239640dac80b04706ad59a_34235_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;227&#34;
+		data-flex-basis=&#34;545px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;Una vez sabemos la versión de &amp;ldquo;exiftool&amp;rdquo; buscamos en Firefox algún tipo de vulnerabilidad asociada; encontramos CVE-2022-23935 que nos permite la ejecución de comandos arbitraria. Siguiendo el reporte:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/p/2023/investigation-machine/investigation3.png&#34;
+	width=&#34;695&#34;
+	height=&#34;341&#34;
+	srcset=&#34;/p/2023/investigation-machine/investigation3_hucc422639214921375f025081aeb96d2e_48778_480x0_resize_box_3.png 480w, /p/2023/investigation-machine/investigation3_hucc422639214921375f025081aeb96d2e_48778_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;203&#34;
+		data-flex-basis=&#34;489px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/p/2023/investigation-machine/investigation4.png&#34;
+	width=&#34;705&#34;
+	height=&#34;225&#34;
+	srcset=&#34;/p/2023/investigation-machine/investigation4_hu6892aa3cb6158acd30c3ab2c938145b8_27257_480x0_resize_box_3.png 480w, /p/2023/investigation-machine/investigation4_hu6892aa3cb6158acd30c3ab2c938145b8_27257_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;313&#34;
+		data-flex-basis=&#34;752px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/p/2023/investigation-machine/investigation5.png&#34;
+	width=&#34;1180&#34;
+	height=&#34;121&#34;
+	srcset=&#34;/p/2023/investigation-machine/investigation5_hu02d1c50c702b707a92f644f8a8b777bf_22501_480x0_resize_box_3.png 480w, /p/2023/investigation-machine/investigation5_hu02d1c50c702b707a92f644f8a8b777bf_22501_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;975&#34;
+		data-flex-basis=&#34;2340px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;Obtenemos la petición del equipo objetivo : tenemos conexión directa y ejecutamos comandos en él.&lt;/p&gt;
+&lt;h2 id=&#34;escalada-de-privilegios&#34;&gt;Escalada de privilegios&lt;/h2&gt;
+&lt;h3 id=&#34;escalada-de-privilegios-horizontal-windows-security-log-events&#34;&gt;Escalada de privilegios horizontal: Windows Security Log Events&lt;/h3&gt;
+&lt;p&gt;Tras una breve búsqueda de ficheros que le pertenezcan al usuario:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/p/2023/investigation-machine/investigation6.png&#34;
+	width=&#34;1260&#34;
+	height=&#34;620&#34;
+	srcset=&#34;/p/2023/investigation-machine/investigation6_hu7953d9f1c61a8b067889c99f9f29f846_150778_480x0_resize_box_3.png 480w, /p/2023/investigation-machine/investigation6_hu7953d9f1c61a8b067889c99f9f29f846_150778_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;203&#34;
+		data-flex-basis=&#34;487px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;Lo que parece ser un correo enviado con un archivo adjunto. Haciendo una serie de conversiones obtenemos el archivo adjunto, que resulta ser un archivo de logs de Windows. Es la primera vez que manejo este tipo de archivos, por tanto me informé de la estructura y me centré en lo que se conoce como &amp;ldquo;Event Id&amp;rdquo; una serie de códigos que definen las distintas situaciones que se registran en el archivo. Tras un par de horas entre una cosa y otra:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/p/2023/investigation-machine/investigation9.png&#34;
+	width=&#34;912&#34;
+	height=&#34;458&#34;
+	srcset=&#34;/p/2023/investigation-machine/investigation9_huff70ef63ebf10f4c0fbd6a5c133470ae_93383_480x0_resize_box_3.png 480w, /p/2023/investigation-machine/investigation9_huff70ef63ebf10f4c0fbd6a5c133470ae_93383_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;199&#34;
+		data-flex-basis=&#34;477px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;¿Qué es lo que ha pasado?¿Por qué está la credencial en texto claro? El evento 4625 está asociado al evento &amp;ldquo;An account failed to log on&amp;rdquo; y el usuario cometió el error de ,en lugar de introducir el nombre de usuario, escribió la contraseña por error. Esto nos puede pasar si tenemos algún campo que se rellena solo en un formulario de inicio de sesión o si creemos que ya hemos introducido el nombre de usuario; al final toda esa información queda registrada en los logs del equipo.&lt;/p&gt;
+&lt;h3 id=&#34;escalada-de-privilegios-vertical-reverse-engineering-with-ghidra&#34;&gt;Escalada de privilegios vertical: Reverse Engineering with Ghidra&lt;/h3&gt;
+&lt;p&gt;Como usuario &amp;ldquo;smorton&amp;rdquo; comprobamos si hay algún binario que podamos ejecutar sin proporcionar contraseña como root:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/p/2023/investigation-machine/investigation10.png&#34;
+	width=&#34;1048&#34;
+	height=&#34;353&#34;
+	srcset=&#34;/p/2023/investigation-machine/investigation10_hu8d1b1a8b98162c3ca72a24d61fb7e0cc_83829_480x0_resize_box_3.png 480w, /p/2023/investigation-machine/investigation10_hu8d1b1a8b98162c3ca72a24d61fb7e0cc_83829_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;296&#34;
+		data-flex-basis=&#34;712px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;Parece ser un binario que no pertenece al SO por defecto. Nos lo traemos a nuestro equipo y lo analizamos con Ghidra:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/p/2023/investigation-machine/investigation11.png&#34;
+	width=&#34;794&#34;
+	height=&#34;597&#34;
+	srcset=&#34;/p/2023/investigation-machine/investigation11_huddb2923ab9abca0dda74095ab2884602_31724_480x0_resize_box_3.png 480w, /p/2023/investigation-machine/investigation11_huddb2923ab9abca0dda74095ab2884602_31724_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;132&#34;
+		data-flex-basis=&#34;319px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;Tras seguir el flujo principal del programa resulta que necesita de dos parámetros: una url de donde se descarga un archivo que posteriormente lo ejecuta con Perl, y una cadena de texto predefinida.&lt;/p&gt;
+&lt;p&gt;Desde nuestro equipo creamos un pequeño script en Perl que nos otorgue privilegios de administrador:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-perl&#34; data-lang=&#34;perl&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; &lt;span class=&#34;nb&#34;&gt;system&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;/bin/bash&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Y desde el equipo objetivo:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/p/2023/investigation-machine/investigation12.png&#34;
+	width=&#34;1200&#34;
+	height=&#34;187&#34;
+	srcset=&#34;/p/2023/investigation-machine/investigation12_hu7a59186d134787adbcd70c33d82f0e72_58634_480x0_resize_box_3.png 480w, /p/2023/investigation-machine/investigation12_hu7a59186d134787adbcd70c33d82f0e72_58634_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;641&#34;
+		data-flex-basis=&#34;1540px&#34;
+	
+&gt;&lt;/p&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>
