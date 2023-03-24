@@ -185,8 +185,8 @@ Comprobamos los servicios expuestos:"><meta name="twitter:card" content="summary
     </li>
     <li><a href="#escalada-de-privilegios">Escalada de privilegios</a>
       <ol>
-        <li><a href="#escalada-de-privilegios-horizontal">Escalada de privilegios horizontal</a></li>
-        <li><a href="#escalada-de-privilegios-vertical">Escalada de privilegios vertical</a></li>
+        <li><a href="#escalada-de-privilegios-de-usuario">Escalada de privilegios de usuario</a></li>
+        <li><a href="#escalada-de-privilegios-vertical-a-root">Escalada de privilegios vertical a root</a></li>
       </ol>
     </li>
   </ol>
@@ -503,7 +503,7 @@ Comprobamos los servicios expuestos:"><meta name="twitter:card" content="summary
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="escalada-de-privilegios">Escalada de privilegios</h2>
-<h3 id="escalada-de-privilegios-horizontal">Escalada de privilegios horizontal</h3>
+<h3 id="escalada-de-privilegios-de-usuario">Escalada de privilegios de usuario</h3>
 <p>Una vez dentro como el usuario frank utilizamos la contraseña para phil que anteriormente hemos visto:</p>
 <p><img src="/p/2023/inject-machine/inject6.png"
 	width="929"
@@ -518,7 +518,7 @@ Comprobamos los servicios expuestos:"><meta name="twitter:card" content="summary
 	
 ></p>
 <p>Lo más relevante es que pertenecemos al grupo &lsquo;staff&rsquo;. Vemos la flag del usuario.</p>
-<h3 id="escalada-de-privilegios-vertical">Escalada de privilegios vertical</h3>
+<h3 id="escalada-de-privilegios-vertical-a-root">Escalada de privilegios vertical a root</h3>
 <p>Tras buscar un poco encuentro un directorio en opt sobre el que el grupo &ldquo;staff&rdquo; tiene permisos; en él hay un archivo yaml llamado &ldquo;playbook&rdquo;. Esto parece ser una tarea automática de ansible.</p>
 <p>Echo  un vistazo a ver si encuentro la tarea de automatización:</p>
 <div class="highlight"><div class="chroma">

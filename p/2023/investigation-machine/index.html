@@ -180,8 +180,8 @@ Reconocimiento Ejecutamos nmap para ver los puertos abiertos:
     <li><a href="#obteniendo-acceso-a-la-máquina-víctima">Obteniendo acceso a la máquina víctima</a></li>
     <li><a href="#escalada-de-privilegios">Escalada de privilegios</a>
       <ol>
-        <li><a href="#escalada-de-privilegios-horizontal-windows-security-log-events">Escalada de privilegios horizontal: Windows Security Log Events</a></li>
-        <li><a href="#escalada-de-privilegios-vertical-reverse-engineering-with-ghidra">Escalada de privilegios vertical: Reverse Engineering with Ghidra</a></li>
+        <li><a href="#escalada-de-privilegios-windows-security-log-events">Escalada de privilegios: Windows Security Log Events</a></li>
+        <li><a href="#escalada-de-privilegios-vertical-a-root-reverse-engineering-with-ghidra">Escalada de privilegios vertical a root: Reverse Engineering with Ghidra</a></li>
       </ol>
     </li>
   </ol>
@@ -442,7 +442,7 @@ Reconocimiento Ejecutamos nmap para ver los puertos abiertos:
 ></p>
 <p>Obtenemos la petición del equipo objetivo : tenemos conexión directa y ejecutamos comandos en él.</p>
 <h2 id="escalada-de-privilegios">Escalada de privilegios</h2>
-<h3 id="escalada-de-privilegios-horizontal-windows-security-log-events">Escalada de privilegios horizontal: Windows Security Log Events</h3>
+<h3 id="escalada-de-privilegios-windows-security-log-events">Escalada de privilegios: Windows Security Log Events</h3>
 <p>Tras una breve búsqueda de ficheros que le pertenezcan al usuario:</p>
 <p><img src="/p/2023/investigation-machine/investigation6.png"
 	width="1260"
@@ -470,7 +470,7 @@ Reconocimiento Ejecutamos nmap para ver los puertos abiertos:
 	
 ></p>
 <p>¿Qué es lo que ha pasado?¿Por qué está la credencial en texto claro? El evento 4625 está asociado al evento &ldquo;An account failed to log on&rdquo; y el usuario cometió el error de ,en lugar de introducir el nombre de usuario, escribió la contraseña por error. Esto nos puede pasar si tenemos algún campo que se rellena solo en un formulario de inicio de sesión o si creemos que ya hemos introducido el nombre de usuario; al final toda esa información queda registrada en los logs del equipo.</p>
-<h3 id="escalada-de-privilegios-vertical-reverse-engineering-with-ghidra">Escalada de privilegios vertical: Reverse Engineering with Ghidra</h3>
+<h3 id="escalada-de-privilegios-vertical-a-root-reverse-engineering-with-ghidra">Escalada de privilegios vertical a root: Reverse Engineering with Ghidra</h3>
 <p>Como usuario &ldquo;smorton&rdquo; comprobamos si hay algún binario que podamos ejecutar sin proporcionar contraseña como root:</p>
 <p><img src="/p/2023/investigation-machine/investigation10.png"
 	width="1048"

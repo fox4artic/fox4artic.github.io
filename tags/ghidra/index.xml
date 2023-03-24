@@ -179,7 +179,7 @@
 &gt;&lt;/p&gt;
 &lt;p&gt;Obtenemos la petición del equipo objetivo : tenemos conexión directa y ejecutamos comandos en él.&lt;/p&gt;
 &lt;h2 id=&#34;escalada-de-privilegios&#34;&gt;Escalada de privilegios&lt;/h2&gt;
-&lt;h3 id=&#34;escalada-de-privilegios-horizontal-windows-security-log-events&#34;&gt;Escalada de privilegios horizontal: Windows Security Log Events&lt;/h3&gt;
+&lt;h3 id=&#34;escalada-de-privilegios-windows-security-log-events&#34;&gt;Escalada de privilegios: Windows Security Log Events&lt;/h3&gt;
 &lt;p&gt;Tras una breve búsqueda de ficheros que le pertenezcan al usuario:&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;/p/2023/investigation-machine/investigation6.png&#34;
 	width=&#34;1260&#34;
@@ -207,7 +207,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;¿Qué es lo que ha pasado?¿Por qué está la credencial en texto claro? El evento 4625 está asociado al evento &amp;ldquo;An account failed to log on&amp;rdquo; y el usuario cometió el error de ,en lugar de introducir el nombre de usuario, escribió la contraseña por error. Esto nos puede pasar si tenemos algún campo que se rellena solo en un formulario de inicio de sesión o si creemos que ya hemos introducido el nombre de usuario; al final toda esa información queda registrada en los logs del equipo.&lt;/p&gt;
-&lt;h3 id=&#34;escalada-de-privilegios-vertical-reverse-engineering-with-ghidra&#34;&gt;Escalada de privilegios vertical: Reverse Engineering with Ghidra&lt;/h3&gt;
+&lt;h3 id=&#34;escalada-de-privilegios-vertical-a-root-reverse-engineering-with-ghidra&#34;&gt;Escalada de privilegios vertical a root: Reverse Engineering with Ghidra&lt;/h3&gt;
 &lt;p&gt;Como usuario &amp;ldquo;smorton&amp;rdquo; comprobamos si hay algún binario que podamos ejecutar sin proporcionar contraseña como root:&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;/p/2023/investigation-machine/investigation10.png&#34;
 	width=&#34;1048&#34;
