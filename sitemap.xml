@@ -3,30 +3,42 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>/</loc>
-    <lastmod>2023-03-01T00:00:00+00:00</lastmod>
+    <lastmod>2023-03-02T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/tags/ansible/</loc>
+    <lastmod>2023-03-02T00:00:00+00:00</lastmod>
   </url><url>
     <loc>/categories/</loc>
-    <lastmod>2023-03-01T00:00:00+00:00</lastmod>
+    <lastmod>2023-03-02T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/tags/cve/</loc>
+    <lastmod>2023-03-02T00:00:00+00:00</lastmod>
   </url><url>
     <loc>/categories/htb/</loc>
-    <lastmod>2023-03-01T00:00:00+00:00</lastmod>
+    <lastmod>2023-03-02T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/tags/nfs/</loc>
-    <lastmod>2023-03-01T00:00:00+00:00</lastmod>
+    <loc>/p/2023/inject-machine/</loc>
+    <lastmod>2023-03-02T00:00:00+00:00</lastmod>
   </url><url>
     <loc>/post/</loc>
-    <lastmod>2023-03-01T00:00:00+00:00</lastmod>
+    <lastmod>2023-03-02T00:00:00+00:00</lastmod>
   </url><url>
     <loc>/tags/rce/</loc>
+    <lastmod>2023-03-02T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/tags/spring/</loc>
+    <lastmod>2023-03-02T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/tags/</loc>
+    <lastmod>2023-03-02T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/tags/nfs/</loc>
     <lastmod>2023-03-01T00:00:00+00:00</lastmod>
   </url><url>
     <loc>/tags/rpc/</loc>
     <lastmod>2023-03-01T00:00:00+00:00</lastmod>
   </url><url>
     <loc>/p/2023/squashed-machine/</loc>
-    <lastmod>2023-03-01T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>/tags/</loc>
     <lastmod>2023-03-01T00:00:00+00:00</lastmod>
   </url><url>
     <loc>/tags/x11/</loc>
@@ -43,9 +55,6 @@
   </url><url>
     <loc>/tags/reverse-engineering/</loc>
     <lastmod>2023-02-15T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>/tags/cve/</loc>
-    <lastmod>2023-02-10T00:00:00+00:00</lastmod>
   </url><url>
     <loc>/tags/john/</loc>
     <lastmod>2023-02-10T00:00:00+00:00</lastmod>
