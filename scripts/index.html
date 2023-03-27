@@ -3,7 +3,7 @@
     <head><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Varias utilidades que he ido programando para distintos escenarios.
 Aunque cada vez las programo de nuevo,para así reforzar conocimientos y practicar, seguro que a alguna persona le puede ser de utilidad.
-grePorts 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 #!/bin/bash ## ## Author: 4rtic f0x ## ## Simple bash script in order to extract the open ports from nmap -oG format ##( and copy them in clipboard ) ## ## For example (using TCP port scan by default, -sU for UDP): ## ## nmap -p- --open -T5 -n &amp;lt;ip&amp;gt; -oG openTCPports ## .'>
+Wtachproc 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 #!'>
 <title>Scripts</title>
 
 <link rel='canonical' href='/scripts/'>
@@ -11,14 +11,14 @@ grePorts 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27
 <link rel="stylesheet" href="/scss/style.min.9e18e1b797c5244ff7885f4c06183827750e5d6f4091e5eea3d7d981de346889.css"><meta property='og:title' content='Scripts'>
 <meta property='og:description' content='Varias utilidades que he ido programando para distintos escenarios.
 Aunque cada vez las programo de nuevo,para así reforzar conocimientos y practicar, seguro que a alguna persona le puede ser de utilidad.
-grePorts 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 #!/bin/bash ## ## Author: 4rtic f0x ## ## Simple bash script in order to extract the open ports from nmap -oG format ##( and copy them in clipboard ) ## ## For example (using TCP port scan by default, -sU for UDP): ## ## nmap -p- --open -T5 -n &amp;lt;ip&amp;gt; -oG openTCPports ## .'>
+Wtachproc 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 #!'>
 <meta property='og:url' content='/scripts/'>
 <meta property='og:site_name' content='4rtic f0x'>
 <meta property='og:type' content='article'><meta property='article:section' content='Page' />
 <meta name="twitter:title" content="Scripts">
 <meta name="twitter:description" content="Varias utilidades que he ido programando para distintos escenarios.
 Aunque cada vez las programo de nuevo,para así reforzar conocimientos y practicar, seguro que a alguna persona le puede ser de utilidad.
-grePorts 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 #!/bin/bash ## ## Author: 4rtic f0x ## ## Simple bash script in order to extract the open ports from nmap -oG format ##( and copy them in clipboard ) ## ## For example (using TCP port scan by default, -sU for UDP): ## ## nmap -p- --open -T5 -n &amp;lt;ip&amp;gt; -oG openTCPports ## .">
+Wtachproc 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 #!">
     </head>
     <body class="
     article-page
@@ -175,6 +175,7 @@ grePorts 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ol>
+    <li><a href="#wtachproc">Wtachproc</a></li>
     <li><a href="#greports">grePorts</a></li>
     <li><a href="#loginbruteforce">loginBruteforce</a></li>
     <li><a href="#kdbx-version-4-brute-force">Kdbx version 4 brute force</a></li>
@@ -221,7 +222,7 @@ grePorts 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27
 
 
                 <time class="article-time--reading">
-                    3 minutos a leer
+                    5 minutos a leer
                 </time>
             </div>
         
@@ -239,7 +240,206 @@ grePorts 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27
     <p>Varias utilidades que he ido programando para distintos escenarios.</p>
 <p>Aunque cada vez las programo de nuevo,para así reforzar conocimientos y practicar,
 seguro que a alguna persona le puede ser de utilidad.</p>
-<h2 id="greports">grePorts</h2>
+<h2 id="wtachproc">Wtachproc</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span><span class="lnt">79
+</span><span class="lnt">80
+</span><span class="lnt">81
+</span><span class="lnt">82
+</span><span class="lnt">83
+</span><span class="lnt">84
+</span><span class="lnt">85
+</span><span class="lnt">86
+</span><span class="lnt">87
+</span><span class="lnt">88
+</span><span class="lnt">89
+</span><span class="lnt">90
+</span><span class="lnt">91
+</span><span class="lnt">92
+</span><span class="lnt">93
+</span><span class="lnt">94
+</span><span class="lnt">95
+</span><span class="lnt">96
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="cp">#!/bin/env bash
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">#========================================================#</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Author:4artic f0x</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Name: watchproc</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Description: Small script written in bash to detect the</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#  execution of temporary processes.</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#========================================================#</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># help panel</span>
+</span></span><span class="line"><span class="cl">help<span class="o">(){</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">echo</span> -e <span class="s2">&#34;[!] Usage: &#34;</span><span class="nv">$0</span><span class="s2">&#34;[FILTER OPTIONS]\n\nFilters:\n&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">echo</span> -e <span class="s2">&#34;-u, --user\t Filter processes according to a specific user\n&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">echo</span> -e <span class="s2">&#34;-cmd, --command\t Filter the processes by specifying a part of the command\n&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Ctrl+c or SIGINT trap</span>
+</span></span><span class="line"><span class="cl">trap_handler<span class="o">(){</span>
+</span></span><span class="line"><span class="cl">  rm *_proc
+</span></span><span class="line"><span class="cl">  <span class="nb">echo</span> -e <span class="s2">&#34;\n[&gt;](watchproc) Exiting...&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">exit</span> <span class="m">0</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Checks if the value is empty</span>
+</span></span><span class="line"><span class="cl">empty_value<span class="o">(){</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="o">[[</span> -z <span class="nv">$1</span> <span class="o">]]</span>
+</span></span><span class="line"><span class="cl">  <span class="k">then</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">help</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">exit</span> <span class="m">1</span>
+</span></span><span class="line"><span class="cl">  <span class="k">fi</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Assign the value for filtering</span>
+</span></span><span class="line"><span class="cl">assign_value<span class="o">(){</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="o">[[</span> -z <span class="nv">$FILTERS</span> <span class="o">]]</span>
+</span></span><span class="line"><span class="cl">  <span class="k">then</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">FILTERS</span><span class="o">=</span><span class="nv">$1</span>
+</span></span><span class="line"><span class="cl">  <span class="k">else</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">FILTERS</span><span class="o">=</span><span class="nv">$FILTERS</span><span class="s2">&#34;.*&#34;</span><span class="nv">$1</span>
+</span></span><span class="line"><span class="cl">  <span class="k">fi</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Obtain all processes for comparison</span>
+</span></span><span class="line"><span class="cl">save_proc<span class="o">(){</span>
+</span></span><span class="line"><span class="cl">  ps -eo pid,user,cmd --sort -pid <span class="p">|</span> grep -E <span class="nv">$FILTERS</span> <span class="p">|</span> grep -Ev <span class="s2">&#34;\[&#34;</span> <span class="p">|</span> grep -Ev <span class="s2">&#34;</span><span class="nv">$EXPRESSION</span><span class="s2">&#34;</span> &gt; <span class="nv">$1</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">trap</span> trap_handler SIGINT
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">EXPRESSION</span><span class="o">=</span><span class="s2">&#34;grep|ps -eo pid,user,cmd&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">FILTERS</span><span class="o">=</span><span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">ARGS</span><span class="o">=(</span><span class="s2">&#34;</span><span class="nv">$@</span><span class="s2">&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="o">((</span><span class="nv">i</span><span class="o">=</span>0<span class="p">;</span> i&lt;<span class="nv">$#</span> <span class="p">;</span> <span class="nv">i</span><span class="o">=</span>i+2<span class="o">))</span>
+</span></span><span class="line"><span class="cl"><span class="k">do</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">ARG</span><span class="o">=</span><span class="si">${</span><span class="nv">ARGS</span><span class="p">[i]</span><span class="si">}</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">VALUE</span><span class="o">=</span><span class="si">${</span><span class="nv">ARGS</span><span class="p">[i+1]</span><span class="si">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># The options are just to make it easier to understand what is being done,</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># specifically is made for my machine guides.</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="k">case</span> <span class="nv">$ARG</span> in
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    -u <span class="p">|</span> --user<span class="o">)</span>
+</span></span><span class="line"><span class="cl">      empty_value <span class="nv">$VALUE</span>
+</span></span><span class="line"><span class="cl">      assign_value <span class="nv">$VALUE</span>
+</span></span><span class="line"><span class="cl">      <span class="p">;;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    -cmd <span class="p">|</span> --command<span class="o">)</span>
+</span></span><span class="line"><span class="cl">      empty_value <span class="nv">$VALUE</span>
+</span></span><span class="line"><span class="cl">      assign_value <span class="nv">$VALUE</span>
+</span></span><span class="line"><span class="cl">      <span class="p">;;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    *<span class="o">)</span>
+</span></span><span class="line"><span class="cl">      <span class="nb">echo</span> <span class="s2">&#34;[x] Unknown arg: &#34;</span><span class="nv">$ARG</span>
+</span></span><span class="line"><span class="cl">      <span class="nb">help</span>
+</span></span><span class="line"><span class="cl">      <span class="nb">exit</span> <span class="m">1</span>
+</span></span><span class="line"><span class="cl">  <span class="k">esac</span>
+</span></span><span class="line"><span class="cl"><span class="k">done</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> -e <span class="s2">&#34;[0](watchproc) Detecting process execution...\n&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">save_proc current_proc
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Watch the processes</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">while</span> <span class="o">[[</span> <span class="m">1</span> -eq <span class="m">1</span> <span class="o">]]</span>
+</span></span><span class="line"><span class="cl"><span class="k">do</span>
+</span></span><span class="line"><span class="cl">  save_proc actual_proc
+</span></span><span class="line"><span class="cl">  <span class="c1"># Compare</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">RESULT</span><span class="o">=</span><span class="k">$(</span>diff current_proc actual_proc<span class="k">)</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="o">[[</span> ! -z <span class="nv">$RESULT</span> <span class="o">]]</span>
+</span></span><span class="line"><span class="cl">  <span class="k">then</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">echo</span> <span class="nv">$RESULT</span>
+</span></span><span class="line"><span class="cl">    save_proc current_proc
+</span></span><span class="line"><span class="cl">  <span class="k">fi</span>
+</span></span><span class="line"><span class="cl"><span class="k">done</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="greports">grePorts</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
